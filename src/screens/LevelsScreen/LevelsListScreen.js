@@ -85,24 +85,51 @@ function getLevelById(id) {
 }
 
 
+function renderLetter(letter, index) {
+    // Add a class 'right or error'
+    // Does the letter match whats in the array? If yes, put green, if not, put red
+    return <span style={{
+        fontSize: "20px",
+        margin: "0 2px"
+    }} key={index}>{letter}</span>
+}
+
+
 function LevelScreen() {
     const [currentLevel, setCurrentLevel] = useState(1)
-    const [currentText, setCurrentText] = useState("")
+    const [gameText, setGameText] = useState([])
+    const [currentLetterIndex, setCurrentLetterIndex] = useState(0)
+    const [userText, setUserText] = useState([])
 
-    function renderLetter(letter) {
-        // Add a class 'right or error'
 
-        return <span>{letter}</span>
+    function getAccuracy() {
+        console.log("Game text", gameText)
+        console.log("User text", userText)
     }
+    // At the start, don't show accuracy or speed, as there isn't any
+
+    const type = () => {
+        window.addEventListener('keydown', e => {
+            setUserText(userText => [...userText, e.key])
+        })
+    }
+    console.log("User text", userText)
 
     useEffect(() => {
-        setCurrentText(getLevelById(currentLevel).gameText)
+        setGameText(Array.from(getLevelById(currentLevel).gameText))
+        type()
     }, [])
 
     return (
         <div className="LevelsScreen">
             <div>
-                <p>{currentText}</p>
+                {Array.from(gameText).map((letter, index) => {
+                    return renderLetter(letter, index)
+                })}
+            </div>
+            <div>
+                <p>Accuracy: 100% {getAccuracy()}</p>
+                <p>Speed: 0WPM</p>
             </div>
 
         </div>
