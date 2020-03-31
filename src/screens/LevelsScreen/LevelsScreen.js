@@ -1,5 +1,5 @@
 import React from 'react';
-import LevelBox from './sub-components/LevelBox/LevelBox';
+import LevelsList from './sub-components/LevelsList/LevelsList';
 
 
 const levels = [
@@ -44,13 +44,28 @@ const levels = [
 
 
 
+
 function LevelsScreen() {
+    const [progress, setProgress] = React.useState(0);
 
+    let unlockedLevels = 5
+    let lockedLevels = 13
 
+    const percentage = unlockedLevels / lockedLevels * 100;
     return (
         <div className="LevelsScreen">
+            LevelScreen
+            {`${percentage} %`}
+            {/* // Get total items, check if its locked, get a percentage on how many are unlocked */}
 
-            <LevelsList data={levels} />
+            {levels.map(progress => {
+
+                console.log(progress.levels)
+
+            })}
+
+
+            <LevelsList levels={levels} />
 
         </div>
     );

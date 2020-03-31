@@ -1,10 +1,16 @@
 import React from 'react';
 
-function LevelsList({ levelGroup }) {
+import LevelBox from '../LevelBox/LevelBox';
+import LevelGroup from '../LevelGroup/LevelGroup';
+
+
+function LevelsList({ levels }) {
+
+
 
     return (
         <div>
-            Levels
+
             {levels.map(group => {
                 return (
                     <LevelGroup name={group.name}>
@@ -14,8 +20,6 @@ function LevelsList({ levelGroup }) {
                     </LevelGroup>
                 )
             })}
-
-
 
         </div>
     )

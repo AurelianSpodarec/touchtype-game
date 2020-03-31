@@ -3,7 +3,7 @@ import React from 'react';
 
 function LevelGroup({ name, children }) {
     return (
-        <div>
+        <div key={name}>
             <h2>{name && name}</h2>
             {children}
         </div>
