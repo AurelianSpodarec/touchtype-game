@@ -1,5 +1,5 @@
 import React from 'react';
-import LevelsScreen from './LevelsScreen/LevelsScreen';
+import LevelsListScreen from './LevelsScreen/LevelsListScreen';
 
 
 // Choose mode screen
@@ -18,7 +18,7 @@ function Game() {
 
     return (
         <div className="Game">
-            <LevelsScreen />
+            <LevelsListScreen />
         </div>
     );
 }

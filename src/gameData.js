@@ -47,3 +47,5 @@ const gameData = [
         words: ["ACCOUNT", "ACCURATE", "ACRES", "ACROSS", "ACT", "ACTION", "ACTIVE"]
     }
 ];
+
+// Add dificulty to speed test eg. level hard is all words above 5 characters and you have 40% less time to type it compared to lelvel 1
