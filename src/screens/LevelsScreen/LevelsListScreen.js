@@ -95,15 +95,29 @@ function getLevelById(id) {
 
 function renderLetter(letter, index, currentIndex, result) {
 
+    let color;
+
+    switch (result[index]) {
+        case true:
+            color = 'green'
+            break;
+        case false:
+            color = 'red'
+            break;
+        default:
+            color = "white"
+    }
+
     return <span
         style={{
             fontSize: "20px",
             margin: "0 2px",
             width: '20px',
             borderBottom: currentIndex === index ? '3px solid blue' : "",
-            backgroundColor: result[index] === true ? 'green' : 'red'
+            backgroundColor: color
         }}
-        key={index}>
+        key={index}
+    >
         {letter}
     </span>
 }
@@ -117,6 +131,7 @@ function LevelScreen() {
 
     const [result, setResult] = useState([])
     // add timer
+    const [accuracy, setAccuracy] = useState(0)
 
     const handleKeyPress = (e) => {
         setCurrentIndex(currentIndex + 1);
@@ -131,9 +146,21 @@ function LevelScreen() {
 
     }
 
+    function countAccuracy() {
+        console.log("Accuracy", result)
+        let incorrect = 0;
+        const a = result.filter(wrong => {
+            if (wrong === false) {
+                incorrect++
+            }
+        })
+
+        setAccuracy((result.length - incorrect) * 100 / result.length)
+    }
+
     useEffect(() => {
         setGameText(Array.from(getLevelById(currentLevel).gameText))
-
+        countAccuracy();
         window.addEventListener('keydown', handleKeyPress);
         return () => { window.removeEventListener('keydown', handleKeyPress) }
     }, [currentIndex])
@@ -146,7 +173,7 @@ function LevelScreen() {
                 })}
             </div>
             <div>
-                {/* <p>Accuracy: {accuracy}%</p> */}
+                <p>Accuracy: {accuracy}%</p>
                 <p>Speed: 0WPM</p>
             </div>
 
