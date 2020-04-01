@@ -10,7 +10,7 @@ const groupedLevels = [
             {
                 id: 1,
                 gameText:
-                    "Goodevening Madam! Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
+                    "oGoodevening Madam! Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
                 locked: false,
                 completed: true
             },
@@ -93,79 +93,56 @@ function getLevelById(id) {
 // .which is deprecated
 
 
-function renderLetter(letter, index, currentLetter, currentIndex, gameText) {
+function renderLetter(letter, index, currentIndex, result) {
 
-    // If letter matches the letter from game text, add pernament bgColor of 'green'
-    // If letter doesn't match the letter from the game text, add pernament bgcolor of 'red'
-
-    // console.log("render eltter", index)
     return <span
         style={{
             fontSize: "20px",
             margin: "0 2px",
             width: '20px',
             borderBottom: currentIndex === index ? '3px solid blue' : "",
-            backgroundColor: currentLetter === gameText[currentIndex] ? 'green' : 'red'
+            backgroundColor: result[index] === true ? 'green' : 'red'
         }}
         key={index}>
         {letter}
     </span>
 }
 
-// If the letter matches
-
 function LevelScreen() {
     const [currentLevel, setCurrentLevel] = useState(1)
+
     const [gameText, setGameText] = useState([])
     const [userText, setUserText] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [incorrectLettersCount, setIncorrectLettersCount] = useState(0)
-    const [currentLetter, setCurrentLetter] = useState(null)
 
     const [result, setResult] = useState([])
+    // add timer
 
+    const handleKeyPress = (e) => {
+        setCurrentIndex(currentIndex + 1);
 
-    // console.log(gameText)
-    // function getAccuracy() {
-    // const accuracy = (userText.length - incorrectLetters) * 100 / userText.length;
-    // console.log(accuracy)
-    // setAccuracy(accuracy);
-    // }
+        setUserText(userText => [...userText, e.key]);
 
-    const type = () => {
-        // console.log("s")
-        // compareGameText()
-        // getAccuracy()
-        window.addEventListener('keydown', e => {
-            setUserText(userText => [...userText, e.key]);
-            setCurrentIndex(currentIndex => currentIndex += 1);
-            setCurrentLetter(e.key)
-        })
-    }
-    console.log("result", result)
-
-    function compareGameText() {
-        setUserText(userText => [userText, ...currentLetter])
-        if (currentLetter === gameText[currentIndex]) {
-            // setIncorrectLettersCount(incorrectLettersCount => incorrectLettersCount + 1)
-            setResult(result => [result, ...true])
+        if (e.key === gameText[currentIndex]) {
+            setResult(result => [...result, true])
         } else {
-            setResult(result => [result, ...false])
+            setResult(result => [...result, false])
         }
-        setCurrentIndex(currentIndex => [currentIndex, currentIndex + 1])
+
     }
 
     useEffect(() => {
         setGameText(Array.from(getLevelById(currentLevel).gameText))
-        type()
-        // setAccuracy(accuracy)
-    }, [])
+
+        window.addEventListener('keydown', handleKeyPress);
+        return () => { window.removeEventListener('keydown', handleKeyPress) }
+    }, [currentIndex])
 
     return (
         <div className="LevelsScreen">
             <div>
                 {Array.from(gameText).map((letter, index) => {
-                    return renderLetter(letter, index, currentLetter, currentIndex, gameText)
+                    return renderLetter(letter, index, currentIndex, result)
                 })}
             </div>
             <div>
