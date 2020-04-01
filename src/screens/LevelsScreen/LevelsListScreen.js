@@ -84,51 +84,92 @@ function getLevelById(id) {
     }
 }
 
+// It’s spelling out “shift” because that’s key name associated when you press the actual “Shift” key on your keyboard
+// Same thing happens with “Enter”, “Backspace”, “Escape”, etc.
+// You’ll probably want to use ‘key.which’ and that’ll give you a number associated to the key pressed.
+// And then you can just make sure that the value is in between the values of a-z and A-Z
+// And probably the commas, exclamation marks, etc
 
-function renderLetter(letter, index) {
-    // Add a class 'right or error'
-    // Does the letter match whats in the array? If yes, put green, if not, put red
-    return <span style={{
-        fontSize: "20px",
-        margin: "0 2px"
-    }} key={index}>{letter}</span>
+// .which is deprecated
+
+
+function renderLetter(letter, index, currentLetter, currentIndex, gameText) {
+
+    // If letter matches the letter from game text, add pernament bgColor of 'green'
+    // If letter doesn't match the letter from the game text, add pernament bgcolor of 'red'
+
+    // console.log("render eltter", index)
+    return <span
+        style={{
+            fontSize: "20px",
+            margin: "0 2px",
+            width: '20px',
+            borderBottom: currentIndex === index ? '3px solid blue' : "",
+            backgroundColor: currentLetter === gameText[currentIndex] ? 'green' : 'red'
+        }}
+        key={index}>
+        {letter}
+    </span>
 }
 
+// If the letter matches
 
 function LevelScreen() {
     const [currentLevel, setCurrentLevel] = useState(1)
     const [gameText, setGameText] = useState([])
-    const [currentLetterIndex, setCurrentLetterIndex] = useState(0)
     const [userText, setUserText] = useState([])
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [incorrectLettersCount, setIncorrectLettersCount] = useState(0)
+    const [currentLetter, setCurrentLetter] = useState(null)
+
+    const [result, setResult] = useState([])
 
 
-    function getAccuracy() {
-        console.log("Game text", gameText)
-        console.log("User text", userText)
-    }
-    // At the start, don't show accuracy or speed, as there isn't any
+    // console.log(gameText)
+    // function getAccuracy() {
+    // const accuracy = (userText.length - incorrectLetters) * 100 / userText.length;
+    // console.log(accuracy)
+    // setAccuracy(accuracy);
+    // }
 
     const type = () => {
+        // console.log("s")
+        // compareGameText()
+        // getAccuracy()
         window.addEventListener('keydown', e => {
-            setUserText(userText => [...userText, e.key])
+            setUserText(userText => [...userText, e.key]);
+            setCurrentIndex(currentIndex => currentIndex += 1);
+            setCurrentLetter(e.key)
         })
     }
-    console.log("User text", userText)
+    console.log("result", result)
+
+    function compareGameText() {
+        setUserText(userText => [userText, ...currentLetter])
+        if (currentLetter === gameText[currentIndex]) {
+            // setIncorrectLettersCount(incorrectLettersCount => incorrectLettersCount + 1)
+            setResult(result => [result, ...true])
+        } else {
+            setResult(result => [result, ...false])
+        }
+        setCurrentIndex(currentIndex => [currentIndex, currentIndex + 1])
+    }
 
     useEffect(() => {
         setGameText(Array.from(getLevelById(currentLevel).gameText))
         type()
+        // setAccuracy(accuracy)
     }, [])
 
     return (
         <div className="LevelsScreen">
             <div>
                 {Array.from(gameText).map((letter, index) => {
-                    return renderLetter(letter, index)
+                    return renderLetter(letter, index, currentLetter, currentIndex, gameText)
                 })}
             </div>
             <div>
-                <p>Accuracy: 100% {getAccuracy()}</p>
+                {/* <p>Accuracy: {accuracy}%</p> */}
                 <p>Speed: 0WPM</p>
             </div>
 
