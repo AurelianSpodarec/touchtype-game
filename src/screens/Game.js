@@ -22,7 +22,7 @@ function Game() {
     return (
         <div className="Game">
             <Router history={browserHistory}>
-
+                s
                 <Routes />
                 {/* <LevelsListScreen /> */}
 

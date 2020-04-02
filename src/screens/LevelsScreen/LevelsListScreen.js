@@ -2,29 +2,18 @@ import React, { useState, useEffect } from 'react';
 import LevelsList from './sub-components/LevelsList/LevelsList';
 import Letter from './sub-components/letter/Letter';
 import ProgressBar from './sub-components/progressBar/ProgressBar';
-
-import gameData from './../../gameData/gameData';
 import { useSelector, useDispatch } from 'react-redux';
+
+import {
+    getModeByID,
+    getLevelByID,
+    getLevelGroupByID
+} from '../../utils/queries';
+
 
 function getPercentage(a, b) {
     return a / b * 100;
 }
-
-
-
-function getModeByID(modeID) {
-    return gameData.filter(object => object.mode === modeID);
-}
-
-function getLevelGroupByID(groupID) {
-    const levelGroup = getModeByID(1);
-    return levelGroup[0].groupLevels.find(object => object.id === groupID);
-}
-
-function getLevelByID(levelID) {
-    return getLevelGroupByID(1).levels.find(object => object.id === levelID);
-}
-
 
 
 
@@ -174,7 +163,7 @@ function LevelsListScreen() {
             {/* {getCompleted().toFixed(0) + "% progress"} */}
 
             {/* <LevelScreen /> */}
-            <LevelsList groupLevels={getModeByID(1)[0].groupLevels} />
+            <LevelsList groupLevels={getModeByID(game.mode)[0].groupLevels} />
 
         </div>
     );
