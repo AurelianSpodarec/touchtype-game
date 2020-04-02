@@ -17,21 +17,21 @@ export const gameData = [
                     {
                         id: 2,
                         gameText:
-                            "Goodevening Madam! Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
+                            "Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
                         locked: true,
                         completed: false
                     },
                     {
                         id: 3,
                         gameText:
-                            "Goodevening Madam! Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
+                            "It would be a pleasure to assist you in on this marverous journey!",
                         locked: true,
                         completed: false
                     },
                     {
                         id: 4,
                         gameText:
-                            "Goodevening Madam! Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
+                            " a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
                         locked: true,
                         completed: false
                     },
@@ -44,14 +44,14 @@ export const gameData = [
                     {
                         id: 5,
                         gameText:
-                            "Goodevening Madam! Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
+                            " I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
                         locked: true,
                         completed: false
                     },
                     {
                         id: 6,
                         gameText:
-                            "Goodevening Madam! Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
+                            "May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
                         locked: true,
                         completed: false
                     },

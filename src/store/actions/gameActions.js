@@ -1,8 +1,12 @@
 
 
-function setLevel(id) {
+function setLevel(levelID) {
     return {
-        type: SET_LEVEL,
-        id
+        type: 'SET_LEVEL',
+        levelID
     }
+}
+
+export {
+    setLevel
 }
