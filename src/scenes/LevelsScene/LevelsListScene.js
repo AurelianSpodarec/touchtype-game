@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import LevelsList from './sub-components/LevelsList/LevelsList';
-import Letter from './sub-components/letter/Letter';
-import ProgressBar from './sub-components/progressBar/ProgressBar';
+import Letter from '../LevelScene/sub-components/letter/Letter';
+import ProgressBar from '../LevelScene/sub-components/progressBar/ProgressBar';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getModeByID } from '../../utils/queries';

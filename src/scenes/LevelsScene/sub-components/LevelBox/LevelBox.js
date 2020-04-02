@@ -13,10 +13,10 @@ function LevelBox({ level, isLocked }) {
     //     dispatch(setLevel(level))
     // }
 
-    // change redux current level
+    // change redux current level?
     console.log("BOX", level)
     return (
-        <Link to={`/levels/${level}`}>
+        <Link to={`/level/${level}`}>
             <div key={level + 1}>
                 {level && level}
                 {isLocked && isLocked ? "LOCKED" : "Unlocked"}

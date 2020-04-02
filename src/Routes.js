@@ -1,23 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import MenuScreen from './screens/MenuScreen/MenuScreen';
-import LevelsListScreen from './screens/LevelsScreen/LevelsListScreen';
-import LevelScreen from './screens/LevelScreen/LevelScreen';
+import MenuScene from './scenes/MenuScene/MenuScene';
+import LevelsListScene from './scenes/LevelsScene/LevelsListScene';
+import LevelScene from './scenes/LevelScene/LevelScene';
 
 
 const Routing = [
     {
         path: "/",
-        component: MenuScreen
+        component: MenuScene
     },
     {
         path: "/levels",
-        component: LevelsListScreen
+        component: LevelsListScene
     },
     {
-        path: "/levels/:id",
-        component: LevelScreen
+        path: "/level/:id",
+        component: LevelScene
     },
     // {
     //     path: "/speed-test",

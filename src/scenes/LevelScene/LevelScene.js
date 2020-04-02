@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {
     getLevelByID,
-} from './../../utils/queries';
+} from '../../utils/queries';
 
 
 function getPercentage(a, b) {
