@@ -122,16 +122,27 @@ function renderLetter(letter, index, currentIndex, result) {
     </span>
 }
 
+function renderProgress(progress) {
+    return (
+        <div style={{ width: '100%', height: '100%' }}>
+            <div style={{ height: '10px', backgroundColor: 'red', width: progress + "%" }}></div>
+        </div>
+    )
+}
+
 function LevelScreen() {
     const [currentLevel, setCurrentLevel] = useState(1)
 
-    const [gameText, setGameText] = useState([])
-    const [userText, setUserText] = useState([])
+    const [gameText, setGameText] = useState([]);
+    const [userText, setUserText] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const [result, setResult] = useState([])
+    const [result, setResult] = useState([]);
     // add timer
-    const [accuracy, setAccuracy] = useState(0)
+    const [accuracy, setAccuracy] = useState(0);
+    const [WPM, setWPM] = useState(0);
+    const [progress, setProgress] = useState(0);
+
 
     const handleKeyPress = (e) => {
         setCurrentIndex(currentIndex + 1);
@@ -155,15 +166,33 @@ function LevelScreen() {
             }
         })
 
-        setAccuracy((result.length - incorrect) * 100 / result.length)
+        setAccuracy(Math.round((result.length - incorrect) * 100 / result.length));
+    }
+
+    function getProgress() {
+        console.log('Get progress', (result.length / gameText.length) * 100)
+        console.log(result.length);
+        console.log(gameText.length)
+        let prog = (result.length / gameText.length) * 100
+        setProgress(prog)
+    }
+
+    function countWPM() {
+        const wpmCount = Math.round((result.length / 5) / (60 - new Date().getSeconds())) * 100
+        setWPM(wpmCount)
     }
 
     useEffect(() => {
         setGameText(Array.from(getLevelById(currentLevel).gameText))
         countAccuracy();
+        getProgress();
         window.addEventListener('keydown', handleKeyPress);
         return () => { window.removeEventListener('keydown', handleKeyPress) }
     }, [currentIndex])
+
+    useEffect(() => {
+        countWPM()
+    }, [new Date().getSeconds()])
 
     return (
         <div className="LevelsScreen">
@@ -174,9 +203,9 @@ function LevelScreen() {
             </div>
             <div>
                 <p>Accuracy: {accuracy}%</p>
-                <p>Speed: 0WPM</p>
+                <p>Speed: {WPM}WPM</p>
             </div>
-
+            {renderProgress(progress)}
         </div>
     );
 }
