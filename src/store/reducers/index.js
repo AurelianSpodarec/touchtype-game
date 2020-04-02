@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-// import HTModalReducer from './HTModalReducers';
+import gameReducer from './gameReducer';
 
 const rootReducers = combineReducers({
-    modal: "hllo"
+    game: gameReducer
 })
 
 export default rootReducers;

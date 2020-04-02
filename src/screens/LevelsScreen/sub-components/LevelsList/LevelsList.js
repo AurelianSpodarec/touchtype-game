@@ -4,12 +4,12 @@ import LevelBox from '../LevelBox/LevelBox';
 import LevelGroup from '../LevelGroup/LevelGroup';
 
 
-function LevelsList({ levels }) {
-
+function LevelsList({ groupLevels }) {
+    console.log("LevelsList", groupLevels)
     return (
         <div>
 
-            {levels.map(group => {
+            {groupLevels.map(group => {
                 return (
                     <LevelGroup name={group.name}>
                         {group.levels.map(level => {

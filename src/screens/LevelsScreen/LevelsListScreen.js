@@ -4,7 +4,7 @@ import Letter from './sub-components/letter/Letter';
 import ProgressBar from './sub-components/progressBar/ProgressBar';
 
 import gameData from './../../gameData/gameData';
-
+import { useSelector, useDispatch } from 'react-redux';
 
 function getPercentage(a, b) {
     return a / b * 100;
@@ -43,7 +43,6 @@ function getLevelByID(levelID) {
 
 
 function LevelScreen() {
-    const [currentLevel, setCurrentLevel] = useState(1)
 
     const [gameText, setGameText] = useState([]);
     const [userText, setUserText] = useState([]);
@@ -60,6 +59,11 @@ function LevelScreen() {
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
 
+    const dispatch = useDispatch();
+    const game = useSelector(state => state.game)
+
+
+
     const handleKeyPress = (e) => {
         setCurrentIndex(currentIndex + 1);
 
@@ -73,6 +77,7 @@ function LevelScreen() {
 
     }
 
+
     function getTime() {
         setInterval(() => {
             // const time = new Date().getSeconds()
@@ -80,6 +85,7 @@ function LevelScreen() {
         }, 1000)
         // console.log("Timer", time)
     }
+
 
     function countAccuracy() {
         let incorrect = 0;
@@ -92,19 +98,22 @@ function LevelScreen() {
         setAccuracy(Math.round((result.length - incorrect) * 100 / result.length));
     }
 
+
     function getProgress() {
         let prog = (result.length / gameText.length) * 100
         setProgress(prog)
     }
+
 
     function countWPM() {
         const wpmCount = Math.round((result.length / 5) / (60 - timer)) * 100
         setWPM(wpmCount)
     }
 
+
     useEffect(() => {
         // console.log("Get level by id use effect", getLevelByID(1))
-        setGameText(Array.from(getLevelByID(currentLevel).gameText))
+        setGameText(Array.from(getLevelByID(game.currentLevel).gameText))
         countAccuracy();
         getProgress();
 
@@ -115,7 +124,7 @@ function LevelScreen() {
     useEffect(() => {
         countWPM()
         getTime()
-    }, [timer])
+    }, []) // timer
 
 
     useEffect(() => {
@@ -155,15 +164,17 @@ function LevelScreen() {
 }
 
 function LevelsListScreen() {
-
+    const game = useSelector(state => state.game)
 
     return (
         <div className="LevelsScreen">
             <p>LevelScreen</p>
+
+
             {/* {getCompleted().toFixed(0) + "% progress"} */}
 
-            <LevelScreen />
-            {/* <LevelsList levels={gameMode} /> */}
+            {/* <LevelScreen /> */}
+            <LevelsList groupLevels={getModeByID(1)[0].groupLevels} />
 
         </div>
     );

@@ -2,6 +2,9 @@ import React from 'react';
 import LevelsListScreen from './LevelsScreen/LevelsListScreen';
 
 
+import Routes from '../Routes';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 // Choose mode screen
 // Game Typing: Show different levels, click the level
 // Speed Test: Get right to it
@@ -12,13 +15,18 @@ import LevelsListScreen from './LevelsScreen/LevelsListScreen';
 
 // Function, get game mode
 
-
+const browserHistory = createBrowserHistory();
 function Game() {
 
 
     return (
         <div className="Game">
-            <LevelsListScreen />
+            <Router history={browserHistory}>
+
+                <Routes />
+                {/* <LevelsListScreen /> */}
+
+            </Router>
         </div>
     );
 }
