@@ -2,7 +2,7 @@ export const gameData = [
     {
         mode: 1,
         name: "Typing Game",
-        levels: [
+        groupLevels: [ // game? section? 
             {
                 id: 1,
                 name: "Top Row",
@@ -58,11 +58,11 @@ export const gameData = [
                 ]
             },
             {
-                id: 2,
+                id: 3,
                 name: "Bottom Row",
                 levels: [
                     {
-                        id: 4,
+                        id: 7,
                         text:
                             "Goodevening Madam! Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
                         unlocked: false

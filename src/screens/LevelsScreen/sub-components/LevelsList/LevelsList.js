@@ -6,8 +6,6 @@ import LevelGroup from '../LevelGroup/LevelGroup';
 
 function LevelsList({ levels }) {
 
-
-
     return (
         <div>
 

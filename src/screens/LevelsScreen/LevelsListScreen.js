@@ -5,64 +5,42 @@ import ProgressBar from './sub-components/progressBar/ProgressBar';
 
 import gameData from './../../gameData/gameData';
 
+
 function getPercentage(a, b) {
     return a / b * 100;
 }
 
-function getGameModeByID(modeID) {
-    const gameMode = gameData.filter(object => object.mode === modeID);
-    return gameMode;
+
+
+function getModeByID(modeID) {
+    return gameData.filter(object => object.mode === modeID);
 }
 
-function getLevelByID(id) {
-    const gameMode = getGameModeByID(1);
-
-    for (const { levels } of gameMode) {
-        console.log("SDs", levels.find(level => level.id === id))
-        return levels.find(level => level.id === id)
-    }
+function getLevelGroupByID(groupID) {
+    const levelGroup = getModeByID(1);
+    return levelGroup[0].groupLevels.find(object => object.id === groupID);
 }
 
-
-function getCompleted() {
-    let completed = 0;
-    let totalLevels = 0;
-    const gameMode = getGameModeByID(1);
-
-    for (const { levels } of gameMode) {
-        totalLevels += levels.length
-        completed += levels.filter(level => level.completed).length
-    }
-
-    return getPercentage(completed, totalLevels)
+function getLevelByID(levelID) {
+    return getLevelGroupByID(1).levels.find(object => object.id === levelID);
 }
 
 
 
 
+// function getCompleted() {
+//     let completed = 0;
+//     let totalLevels = 0;
+//     const gameMode = getModeByID(1);
 
-// Create a function timer  
-function Timer() {
-    const [seconds, setSeconds] = useState(0);
-    const [isActive, setIsActive] = useState(false);
+//     for (const { section } of gameMode) {
+//         totalLevels += section.length
+//         completed += section.filter(level => level.completed).length
+//     }
 
-    function toggle() {
-        setIsActive(!isActive)
-    }
+//     return getPercentage(completed, totalLevels)
+// }
 
-    useEffect(() => {
-        let interval = null;
-        if (isActive) {
-            interval = setInterval(() => {
-                setSeconds(seconds => seconds + 1);
-            }, 1000)
-        } else if (!isActive && seconds !== 0) {
-            clearInterval(interval)
-        }
-        return () => clearInterval(interval)
-    }, [isActive, seconds])
-
-}
 
 function LevelScreen() {
     const [currentLevel, setCurrentLevel] = useState(1)
@@ -104,7 +82,6 @@ function LevelScreen() {
     }
 
     function countAccuracy() {
-        console.log("Accuracy", result)
         let incorrect = 0;
         const a = result.filter(wrong => {
             if (wrong === false) {
@@ -116,9 +93,6 @@ function LevelScreen() {
     }
 
     function getProgress() {
-        console.log('Get progress', (result.length / gameText.length) * 100)
-        console.log(result.length);
-        console.log(gameText.length)
         let prog = (result.length / gameText.length) * 100
         setProgress(prog)
     }
@@ -129,10 +103,11 @@ function LevelScreen() {
     }
 
     useEffect(() => {
-
+        // console.log("Get level by id use effect", getLevelByID(1))
         setGameText(Array.from(getLevelByID(currentLevel).gameText))
         countAccuracy();
         getProgress();
+
         window.addEventListener('keydown', handleKeyPress);
         return () => { window.removeEventListener('keydown', handleKeyPress) }
     }, [currentIndex])
@@ -185,7 +160,7 @@ function LevelsListScreen() {
     return (
         <div className="LevelsScreen">
             <p>LevelScreen</p>
-            {getCompleted().toFixed(0) + "% progress"}
+            {/* {getCompleted().toFixed(0) + "% progress"} */}
 
             <LevelScreen />
             {/* <LevelsList levels={gameMode} /> */}
