@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+import { Container } from '../../components';
 
 
 function MenuScreen() {
@@ -8,11 +9,13 @@ function MenuScreen() {
 
     return (
         <div>
-            <h2>Select Game Mode</h2>
+            <Container>
+                <h2>Select Game Mode</h2>
 
-            <button><Link to="/levels">Touch Typing Game</Link></button>
-            <button>Speed Test</button>
-            <button>Scores</button>
+                <button><Link to="/levels">Touch Typing Game</Link></button>
+                <button>Speed Test</button>
+                <button>Scores</button>
+            </Container>
         </div>
     )
 }
