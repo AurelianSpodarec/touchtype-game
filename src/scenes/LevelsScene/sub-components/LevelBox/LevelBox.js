@@ -16,7 +16,7 @@ function LevelBox({ level, isLocked }) {
     // change redux current level?
     console.log("BOX", level)
     return (
-        <Link to={`/level/${level}`}>
+        <Link className="box" to={`/level/${level}`}>
             <div key={level + 1}>
                 {level && level}
                 {isLocked && isLocked ? "LOCKED" : "Unlocked"}

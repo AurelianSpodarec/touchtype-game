@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-function Container({ children }) {
+function Container({ className, children }) {
 
 
     return (
-        <div className="container">
+        <div className={className}>
             {children}
         </div>
     );

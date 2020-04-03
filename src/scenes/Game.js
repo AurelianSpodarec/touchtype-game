@@ -1,21 +1,22 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
 
 import Routes from '../Routes';
+import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 
 const browserHistory = createBrowserHistory();
 function Game() {
 
-
     return (
         <div className="Game">
-            <Router history={browserHistory}>
+            <div className="bg">
+                <Router history={browserHistory}>
 
-                <Routes />
+                    <Routes />
 
-            </Router>
+                </Router>
+            </div>
         </div>
     );
 }

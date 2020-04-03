@@ -8,15 +8,17 @@ function MenuScreen() {
 
 
     return (
-        <div>
-            <Container>
+        <Container className="menu-scene">
+            <div>
                 <h2>Select Game Mode</h2>
+            </div>
 
-                <button><Link to="/levels">Touch Typing Game</Link></button>
-                <button>Speed Test</button>
-                <button>Scores</button>
-            </Container>
-        </div>
+            <div className="menu-buttons">
+                <button className="menu-button"><Link className="menu-button-link" to="/levels">Touch Typing Game</Link></button>
+                <button className="menu-button"><Link className="menu-button-link">Speed Test</Link></button>
+                <button className="menu-button"><Link className="menu-button-link">Scores</Link></button>
+            </div>
+        </Container>
     )
 }
 

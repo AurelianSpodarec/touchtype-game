@@ -6,6 +6,7 @@ import ProgressBar from '../LevelScene/sub-components/progressBar/ProgressBar';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getModeByID } from '../../utils/queries';
+import { Container } from '../../components';
 
 
 
@@ -13,7 +14,7 @@ function LevelsListScreen() {
     const game = useSelector(state => state.game)
 
     return (
-        <div className="LevelsScreen">
+        <Container className="menu-scene">
             <p>LevelScreen</p>
 
 
@@ -22,7 +23,7 @@ function LevelsListScreen() {
             {/* <LevelScreen /> */}
             <LevelsList groupLevels={getModeByID(game.mode)[0].groupLevels} />
 
-        </div>
+        </Container>
     );
 }
 

@@ -13,7 +13,7 @@ function LevelsList({ groupLevels }) {
     }
 
     return (
-        <div>
+        <div className="all-wrap">
 
             {groupLevels.map(group => {
                 return (
