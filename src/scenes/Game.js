@@ -17,46 +17,37 @@ function Game() {
     const [state, setState] = React.useState(false);
     return (
         <>
-            {/* // <div className="bg"> */}
-
-            {/* <Router history={browserHistory}>
-                <Route render={({ location }) => (
+            <div className="bg">
 
 
-                    <CSSTransition
-                        key={location.key}
-                        timeout={450}
-                        className="fade"
-                    >
-                        <Routes location={location} />
-                    </CSSTransition>
-                )} />
-            </Router> */}
-            <Router history={browserHistory}>
-                <Route render={({ location }) => (
+                <Router history={browserHistory}>
+                    <Route render={({ location }) => (
 
+                        <>
+                            <TransitionGroup>
+                                {/* {({ match }) => ( */}
+                                <CSSTransition
+                                    // in={match != null}
+                                    key={location.key}
+                                    timeout={{ enter: 500, exit: 500 }}
+                                    classNames="page"
+                                // unmountOnExit
+                                >
+                                    <div className="page">
+                                        <Switch location={location}>
+                                            <Route exact path="/" component={MenuScene} />
+                                            <Route path="/levels" component={LevelsListScene} />
+                                            <Route path="/level/:id" component={LevelScene} />
+                                        </Switch>
+                                    </div>
+                                </CSSTransition>
+                                {/* )} */}
+                            </TransitionGroup>
+                        </>
+                    )} />
+                </Router >
 
-
-                    <TransitionGroup>
-                        <CSSTransition
-                            key={location.key}
-                            timeout={{ enter: 500, exit: 500 }}
-                            classNames="fade"
-                        >
-
-                            <Switch location={location}>
-                                <Route exact path="/" component={MenuScene} />
-                                <Route path="/levels" component={LevelsListScene} />
-                                <Route path="/level/:id" component={LevelScene} />
-                            </Switch>
-
-                        </CSSTransition>
-                    </TransitionGroup>
-
-                )} />
-            </Router >
-
-            {/* // </div> */}
+            </div>
         </>
     );
 }
