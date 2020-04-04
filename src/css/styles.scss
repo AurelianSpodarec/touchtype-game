@@ -28,6 +28,76 @@
     background-size: cover;
 }
 
+.page {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+.fade-enter {
+    opacity: 0.01;
+   transform: scale(0.1);
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: 500ms ease-in;
+}
+
+.fade-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fade-exit.fade-exit-active {
+    opacity: 0.01;
+    transition: 500ms ease-in;
+}
+
+.fade-enter {
+    opacity: 0.01;
+   transform: scale(0.1);
+  }
+
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: 500ms ease-in;
+  }
+
+  .fade-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .fade-exit.fade-exit-active {
+    opacity: 0.01;
+   transform: scale(0.1);
+    transition: 500ms ease-in;
+  }
+
+  div.transition-group {
+    position: relative;
+  }
+
+  section.route-section {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
 // ==========================================================================
 // 3-base
 // ==========================================================================

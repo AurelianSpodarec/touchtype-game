@@ -15,10 +15,9 @@ function Letter({ letter, index, currentIndex, result }) {
     }
 
     return <span
+        className="letter"
         style={{
-            fontSize: "20px",
-            margin: "0 2px",
-            width: '20px',
+
             borderBottom: currentIndex === index ? '3px solid blue' : "",
             backgroundColor: color
         }}

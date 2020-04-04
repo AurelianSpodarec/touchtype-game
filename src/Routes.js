@@ -28,12 +28,14 @@ const Routing = [
     // },
 ]
 
-const Routes = () => {
-    return <Switch>
-        {Routing.map((route =>
-            <Route key={route.path} exact path={route.path} component={route.component} />
-        ))}
-    </Switch>
+const Routes = ({ location }) => {
+    return (
+        <Switch location={location}>
+            {Routing.map((route =>
+                <Route key={route.path} exact path={route.path} component={route.component} />
+            ))}
+        </Switch>
+    )
 }
 
 export default Routes;

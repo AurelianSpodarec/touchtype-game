@@ -54,4 +54,15 @@
     flex-direction: row;
 }
 
+.letter{
+    width: 21px;
+    height: 46px;
+    margin-top: -2px;
+    margin-left: 0px;
+
+    font-size: 35px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');

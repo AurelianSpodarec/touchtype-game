@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
     getLevelByID,
 } from '../../utils/queries';
+import { Container } from '../../components';
 
 
 function getPercentage(a, b) {
@@ -130,27 +131,29 @@ function LevelScreen() {
     }, [isActive, seconds])
 
     return (
-        <div className="LevelsScreen">
+        <Container className="menu-scene ">
             <div>
-                {Array.from(gameText).map((letter, index) => {
-                    return (
-                        <Letter
-                            letter={letter}
-                            index={index}
-                            currentIndex={currentIndex}
-                            result={result}
-                        />
-                    )
-                })}
+                <div>
+                    {Array.from(gameText).map((letter, index) => {
+                        return (
+                            <Letter
+                                letter={letter}
+                                index={index}
+                                currentIndex={currentIndex}
+                                result={result}
+                            />
+                        )
+                    })}
+                </div>
+                <div>
+                    <p>Accuracy: {accuracy}%</p>
+                    <p>Speed: {WPM}WPM</p>
+                    <p>Timer: {timer}</p>
+                </div>
             </div>
-            <div>
-                <p>Accuracy: {accuracy}%</p>
-                <p>Speed: {WPM}WPM</p>
-                <p>Timer: {timer}</p>
-            </div>
-
             <ProgressBar progress={progress} />
-        </div>
+
+        </Container>
     );
 }
 
