@@ -9,7 +9,7 @@
     position: relative;
 
     &:active {
-        transition: 0.10s linear;
+        transition: 0.05s linear; // Put this in a class on click once clicked automate it, right now whne user presses it stays pressed
         transform: scale(0.8);
     }
 }

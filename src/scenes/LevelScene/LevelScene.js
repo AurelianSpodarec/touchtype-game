@@ -70,18 +70,7 @@ function LevelScreen() {
     }
 
 
-    // function getCompleted() {
-    //     let completed = 0;
-    //     let totalLevels = 0;
-    //     const gameMode = getModeByID(1);
 
-    //     for (const { section } of gameMode) {
-    //         totalLevels += section.length
-    //         completed += section.filter(level => level.completed).length
-    //     }
-
-    //     return getPercentage(completed, totalLevels)
-    // }
 
     // function getTime() {
     //     setInterval(() => {
