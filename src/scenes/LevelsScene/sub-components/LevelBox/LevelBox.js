@@ -12,9 +12,32 @@ function LevelBox({ level, isLocked }) {
 
     //     dispatch(setLevel(level))
     // }
+    let audio = new Audio("assets/audio/click/locked.mp3");
 
-    // change redux current level?
-    console.log("BOX", level)
+    // const start = () => {
+    //   audio.play()
+    // }
+
+
+    function onClick() {
+        audio.play()
+    }
+
+
+    // change redux current level? 
+
+    if (isLocked) {
+        return (
+            <div onClick={onClick} className="box">
+                <div key={level + 1}>
+                    {level && level}
+                    {isLocked && isLocked ? "LOCKED" : "Unlocked"}
+                </div>
+            </div>
+        )
+    }
+
+
     return (
         <Link className="box" to={`/level/${level}`}>
             <div key={level + 1}>
