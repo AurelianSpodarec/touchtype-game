@@ -12,7 +12,7 @@ function LevelBox({ level, isLocked }) {
 
     //     dispatch(setLevel(level))
     // }
-    let audio = new Audio("assets/audio/click/locked.mp3");
+    let audio = new Audio("assets/audio/click/locked-2.mp3");
 
     // const start = () => {
     //   audio.play()
@@ -20,7 +20,11 @@ function LevelBox({ level, isLocked }) {
 
 
     function onClick() {
-        audio.play()
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.currentTime = 0
+        }
     }
 
 
@@ -29,6 +33,9 @@ function LevelBox({ level, isLocked }) {
     if (isLocked) {
         return (
             <div onClick={onClick} className="box">
+                <div class="lock">
+                    <div class="key-hole"></div>
+                </div>
                 <div key={level + 1}>
                     {level && level}
                     {isLocked && isLocked ? "LOCKED" : "Unlocked"}

@@ -8,26 +8,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
     getLevelByID,
 } from '../../utils/queries';
+
 import { Container } from '../../components';
 
 
-function getPercentage(a, b) {
-    return a / b * 100;
-}
 
-
-// function getCompleted() {
-//     let completed = 0;
-//     let totalLevels = 0;
-//     const gameMode = getModeByID(1);
-
-//     for (const { section } of gameMode) {
-//         totalLevels += section.length
-//         completed += section.filter(level => level.completed).length
-//     }
-
-//     return getPercentage(completed, totalLevels)
-// }
 
 
 function LevelScreen() {
@@ -51,22 +36,52 @@ function LevelScreen() {
 
     const dispatch = useDispatch();
     const game = useSelector(state => state.game)
+    // }
+    // let audio = new Audio("assets/audio/click/locked.mp3");
+
+    // // const start = () => {
+    // //   audio.play()
+    // // }
 
 
+    function onClick() {
+        // audio.play()
+    }
 
+    // const audio = new Audio("assets/audio/typewritter/key-press.pm3")
     const handleKeyPress = (e) => {
-        setCurrentIndex(currentIndex + 1);
+        console.log("ss")
 
-        setUserText(userText => [...userText, e.key]);
 
-        if (e.key === gameText[currentIndex]) {
-            setResult(result => [...result, true])
-        } else {
-            setResult(result => [...result, false])
-        }
+        // setCurrentIndex(currentIndex + 1);
+
+        // setUserText(userText => [...userText, e.key]);
+
+        // if (e.key === gameText[currentIndex]) {
+        //     setResult(result => [...result, true])
+        // } else {
+        //     setResult(result => [...result, false])
+        // }
 
     }
 
+    function getPercentage(a, b) {
+        return a / b * 100;
+    }
+
+
+    // function getCompleted() {
+    //     let completed = 0;
+    //     let totalLevels = 0;
+    //     const gameMode = getModeByID(1);
+
+    //     for (const { section } of gameMode) {
+    //         totalLevels += section.length
+    //         completed += section.filter(level => level.completed).length
+    //     }
+
+    //     return getPercentage(completed, totalLevels)
+    // }
 
     // function getTime() {
     //     setInterval(() => {
@@ -132,11 +147,12 @@ function LevelScreen() {
 
     return (
         <Container className="menu-scene ">
-            <div>
+            <div onClick={onClick} >
                 <div>
                     {Array.from(gameText).map((letter, index) => {
                         return (
                             <Letter
+                                key={index}
                                 letter={letter}
                                 index={index}
                                 currentIndex={currentIndex}
