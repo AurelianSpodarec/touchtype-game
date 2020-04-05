@@ -8,7 +8,7 @@ import { setLevel } from '../../../../store/actions/gameActions';
 function LevelBox({ level, isLocked }) {
     const dispatch = useDispatch()
 
-    let audio = new Audio("assets/audio/click/locked-2.mp3");
+    let audio = new Audio("/assets/audio/click/locked-2.mp3");
     console.log("levelbox audio", audio)
     function onClick() {
         if (audio.paused) {

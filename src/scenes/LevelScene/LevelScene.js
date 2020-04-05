@@ -47,11 +47,11 @@ function LevelScreen() {
     function onClick() {
         // audio.play()
     }
-    let audio = new Audio("assets/audio/click/locked-2.mp3");
+    let audio = new Audio("/assets/audio/typewritter/key-press.mp3");
     function onClick() {
 
     }
-    // const audio = new Audio("assets/audio/typewritter/key-press.pm3")
+
     const handleKeyPress = (e) => {
         console.log("ss")
 
