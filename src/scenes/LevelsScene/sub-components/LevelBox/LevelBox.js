@@ -8,17 +8,8 @@ import { setLevel } from '../../../../store/actions/gameActions';
 function LevelBox({ level, isLocked }) {
     const dispatch = useDispatch()
 
-    // function loadLevel() {
-
-    //     dispatch(setLevel(level))
-    // }
     let audio = new Audio("assets/audio/click/locked-2.mp3");
-
-    // const start = () => {
-    //   audio.play()
-    // }
-
-
+    console.log("levelbox audio", audio)
     function onClick() {
         if (audio.paused) {
             audio.play();
@@ -32,9 +23,9 @@ function LevelBox({ level, isLocked }) {
 
     if (isLocked) {
         return (
-            <div onClick={onClick} className="box">
-                <div class="lock">
-                    <div class="key-hole"></div>
+            <div key={level + 1} onClick={onClick} className="box">
+                <div className="lock">
+                    <div className="key-hole"></div>
                 </div>
                 <div key={level + 1}>
                     {level && level}
@@ -47,7 +38,7 @@ function LevelBox({ level, isLocked }) {
 
     return (
         <Link className="box" to={`/level/${level}`}>
-            <div key={level + 1}>
+            <div>
                 {level && level}
                 {isLocked && isLocked ? "LOCKED" : "Unlocked"}
             </div>

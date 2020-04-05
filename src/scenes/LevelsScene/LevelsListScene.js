@@ -14,7 +14,6 @@ function LevelsListScreen() {
     const game = useSelector(state => state.game)
 
 
-
     // TODO: Needs to go though all levels and count the completes true/false
     function getCompleted() {
         let completed = 0;

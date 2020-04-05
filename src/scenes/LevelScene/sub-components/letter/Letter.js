@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function Letter({ letter, index, currentIndex, result }) {
-    let audio = new Audio("assets/audio/click/locked.mp3");
+
     let color;
     switch (result[index]) {
         case true:
@@ -14,21 +14,8 @@ function Letter({ letter, index, currentIndex, result }) {
             color = "white"
     }
 
-
-
-    // const start = () => {
-    //   audio.play()
-    // }
-
-
-    function onClick() {
-        audio.play()
-    }
-
-
     return (
         <span
-            onClick={onClick}
             className="letter"
             style={{
 

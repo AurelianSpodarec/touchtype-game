@@ -6,6 +6,11 @@ import { Container } from '../../components';
 
 function MenuScreen() {
 
+    let audio = new Audio("assets/audio/click/tiny-push.mp3");
+    console.log("audio", audio)
+    function onClick() {
+        audio.play()
+    }
 
     return (
         <Container className="menu-scene">
@@ -14,9 +19,9 @@ function MenuScreen() {
             </div>
 
             <div className="menu-buttons">
-                <button className="menu-button"><Link className="menu-button-link" to="/levels">Touch Typing Game</Link></button>
-                <button className="menu-button"><Link className="menu-button-link">Speed Test</Link></button>
-                <button className="menu-button"><Link className="menu-button-link">Scores</Link></button>
+                <button onClick={onClick} className="menu-button"><Link className="menu-button-link" to="/levels">Touch Typing Game</Link></button>
+                <button onClick={onClick} className="menu-button"><Link className="menu-button-link">Speed Test</Link></button>
+                <button onClick={onClick} className="menu-button"><Link className="menu-button-link">Scores</Link></button>
             </div>
         </Container>
     )

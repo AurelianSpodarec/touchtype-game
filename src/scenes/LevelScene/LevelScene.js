@@ -47,27 +47,31 @@ function LevelScreen() {
     function onClick() {
         // audio.play()
     }
+    let audio = new Audio("assets/audio/click/locked-2.mp3");
+    function onClick() {
 
+    }
     // const audio = new Audio("assets/audio/typewritter/key-press.pm3")
     const handleKeyPress = (e) => {
         console.log("ss")
 
+        console.log("audio", audio)
+        audio.play()
+        setCurrentIndex(currentIndex + 1);
 
-        // setCurrentIndex(currentIndex + 1);
+        setUserText(userText => [...userText, e.key]);
 
-        // setUserText(userText => [...userText, e.key]);
-
-        // if (e.key === gameText[currentIndex]) {
-        //     setResult(result => [...result, true])
-        // } else {
-        //     setResult(result => [...result, false])
-        // }
+        if (e.key === gameText[currentIndex]) {
+            setResult(result => [...result, true])
+        } else {
+            setResult(result => [...result, false])
+        }
 
     }
 
-    function getPercentage(a, b) {
-        return a / b * 100;
-    }
+    // function getPercentage(a, b) {
+    //     return a / b * 100;
+    // }
 
 
 
@@ -99,10 +103,10 @@ function LevelScreen() {
     }
 
 
-    function countWPM() {
-        const wpmCount = Math.round((result.length / 5) / (60 - timer)) * 100
-        setWPM(wpmCount)
-    }
+    // function countWPM() {
+    //     const wpmCount = Math.round((result.length / 5) / (60 - timer)) * 100
+    //     setWPM(wpmCount)
+    // }
 
 
     useEffect(() => {
@@ -111,28 +115,17 @@ function LevelScreen() {
         setGameText(a) // need to be dynamic
         countAccuracy();
         getProgress();
+        onClick()
 
         window.addEventListener('keydown', handleKeyPress);
         return () => { window.removeEventListener('keydown', handleKeyPress) }
     }, [currentIndex])
 
-    useEffect(() => {
-        countWPM()
-        // getTime()
-    }, []) // timer
+    // useEffect(() => {
+    //     countWPM()
+    //     // getTime()
+    // }, []) // timer
 
-
-    useEffect(() => {
-        let interval = null;
-        if (isActive) {
-            interval = setInterval(() => {
-                setSeconds(seconds => seconds + 1);
-            }, 1000)
-        } else if (!isActive && seconds !== 0) {
-            clearInterval(interval)
-        }
-        return () => clearInterval(interval)
-    }, [isActive, seconds])
 
     return (
         <Container className="menu-scene ">
