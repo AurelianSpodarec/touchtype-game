@@ -9,7 +9,7 @@ import {
     getLevelByID,
 } from '../../utils/queries';
 
-import { Container } from '../../components';
+import { Container, Keyboard } from '../../components';
 
 
 
@@ -151,6 +151,7 @@ function LevelScreen() {
             </div>
             <ProgressBar progress={progress} />
 
+            <Keyboard />
         </Container>
     );
 }
