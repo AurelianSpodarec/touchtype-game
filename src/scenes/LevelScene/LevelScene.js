@@ -36,34 +36,23 @@ function LevelScreen() {
 
     const dispatch = useDispatch();
     const game = useSelector(state => state.game)
-    // }
-    // let audio = new Audio("assets/audio/click/locked.mp3");
-
-    // // const start = () => {
-    // //   audio.play()
-    // // }
 
 
-    function onClick() {
-        // audio.play()
-    }
     let audio = new Audio("/assets/audio/typewritter/key-press.mp3");
-    function onClick() {
-
-    }
+    let audioo = new Audio("/assets/audio/sound/computer-error-blip.mp3");
 
     const handleKeyPress = (e) => {
-        console.log("ss")
 
-        console.log("audio", audio)
-        audio.play()
+        // audio.play()
         setCurrentIndex(currentIndex + 1);
-
         setUserText(userText => [...userText, e.key]);
 
         if (e.key === gameText[currentIndex]) {
+            audio.play()
             setResult(result => [...result, true])
         } else {
+            console.log("wrong")
+            audioo.play()
             setResult(result => [...result, false])
         }
 
@@ -115,7 +104,7 @@ function LevelScreen() {
         setGameText(a) // need to be dynamic
         countAccuracy();
         getProgress();
-        onClick()
+
 
         window.addEventListener('keydown', handleKeyPress);
         return () => { window.removeEventListener('keydown', handleKeyPress) }
@@ -130,7 +119,7 @@ function LevelScreen() {
     return (
         <Container className="menu-scene ">
 
-            <div onClick={onClick} >
+            <div>
                 <div>
                     {Array.from(gameText).map((letter, index) => {
                         return (
