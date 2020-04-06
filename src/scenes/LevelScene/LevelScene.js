@@ -129,6 +129,7 @@ function LevelScreen() {
 
     return (
         <Container className="menu-scene ">
+
             <div onClick={onClick} >
                 <div>
                     {Array.from(gameText).map((letter, index) => {

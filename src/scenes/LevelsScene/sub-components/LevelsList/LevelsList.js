@@ -16,6 +16,7 @@ function LevelsList({ groupLevels }) {
         <div className="all-wrap">
 
             {groupLevels.map(group => {
+                // Every 4th box, add 'row'
                 return (
                     <LevelGroup name={group.name}>
                         {group.levels.map(level => {

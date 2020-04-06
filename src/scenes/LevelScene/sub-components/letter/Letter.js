@@ -5,13 +5,13 @@ function Letter({ letter, index, currentIndex, result }) {
     let color;
     switch (result[index]) {
         case true:
-            color = 'green'
+            color = 'valid'
             break;
         case false:
-            color = 'red'
+            color = 'error'
             break;
         default:
-            color = "white"
+            color = "clear"
     }
 
     return (
@@ -20,11 +20,11 @@ function Letter({ letter, index, currentIndex, result }) {
             style={{
 
                 borderBottom: currentIndex === index ? '3px solid blue' : "",
-                backgroundColor: color
+                // backgroundColor: color
             }}
             key={index}
         >
-            {letter}
+            <span className={color}>{letter}</span>
         </span>
     )
 }

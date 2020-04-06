@@ -3,23 +3,7 @@
 // ==========================================================================
 
 .container {
-    max-width: 1070px;
+    max-width: 910px;
 	margin: 0 auto;
 	padding: 0 15px;
-
-    &--xs {
-        max-width: 760px;
-    }
-
-    &--sm {
-        margin: 0 30%;
-    }
-
-    &--md {
-        
-    }
-
-    &--lg {
-        max-width: 1240px;
-    }
 }
