@@ -11,9 +11,45 @@ import {
 
 import { Container, Keyboard } from '../../components';
 
+// function countWPM() {
+//     const wpmCount = Math.round((result.length / 5) / (60 - timer)) * 100
+//     setWPM(wpmCount)
+// }
 
 
 
+// function countWPM() {
+//     return
+// }
+
+function grossWPM(allTypedEntries, time) {
+    console.log((allTypedEntries / 5) / time)
+    return Math.floor((allTypedEntries / 5) / time * 60);
+}
+
+function netWPM(allTypedEntries, uncorrectedErrors, time) {
+    const grossWPM = (allTypedEntries / 5) * 60;
+    const netWPM = (grossWPM - uncorrectedErrors) / time
+    return netWPM;
+}
+
+// function countAccuracy() {
+//     let incorrect = 0;
+//     const a = result.filter(wrong => {
+//         if (wrong === false) {
+//             incorrect++
+//         }
+//     })
+
+//     setAccuracy(Math.round((result.length - incorrect) * 100 / result.length));
+// }
+
+
+// function Timer() {
+
+
+
+// }
 
 function LevelScreen() {
 
@@ -58,10 +94,6 @@ function LevelScreen() {
 
     }
 
-    // function getPercentage(a, b) {
-    //     return a / b * 100;
-    // }
-
 
 
 
@@ -74,16 +106,6 @@ function LevelScreen() {
     // }
 
     // Create functions for these
-    function countAccuracy() {
-        let incorrect = 0;
-        const a = result.filter(wrong => {
-            if (wrong === false) {
-                incorrect++
-            }
-        })
-
-        setAccuracy(Math.round((result.length - incorrect) * 100 / result.length));
-    }
 
 
     function getProgress() {
@@ -92,34 +114,42 @@ function LevelScreen() {
     }
 
 
-    // function countWPM() {
-    //     const wpmCount = Math.round((result.length / 5) / (60 - timer)) * 100
-    //     setWPM(wpmCount)
-    // }
 
+    function ba() {
+        const start = Date.now();
+        setInterval(function () {
+            const delta = Date.now() - start;
+
+            setSeconds(Math.floor(delta / 1000));
+        }, 500);
+    }
 
     useEffect(() => {
         // console.log("usefefect", getLevelByID(game.level).gameText)
         const a = Array.from(getLevelByID(game.level).gameText)
+
         setGameText(a) // need to be dynamic
-        countAccuracy();
+        // countAccuracy();
         getProgress();
 
 
         window.addEventListener('keydown', handleKeyPress);
         return () => { window.removeEventListener('keydown', handleKeyPress) }
+
     }, [currentIndex])
 
-    // useEffect(() => {
-    //     countWPM()
-    //     // getTime()
-    // }, []) // timer
+    useEffect(() => {
+        // countWPM()
+        // getTime()
+        ba();
+    }, [])
 
 
     return (
         <Container className="menu-scene ">
 
             <div>
+
                 <div>
                     {Array.from(gameText).map((letter, index) => {
                         return (
@@ -134,8 +164,9 @@ function LevelScreen() {
                     })}
                 </div>
                 <div>
+                    <p> Secnds {seconds}</p>
                     <p>Accuracy: {accuracy}%</p>
-                    <p>Speed: {WPM}WPM</p>
+                    <p>Speed: {grossWPM(result.length, seconds)} {WPM}WPM</p>
                     <p>Timer: {timer}</p>
                 </div>
             </div>
