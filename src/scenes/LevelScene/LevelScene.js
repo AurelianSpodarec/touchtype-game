@@ -133,6 +133,7 @@ function LevelScreen() {
         // give score
     }
 
+
     useEffect(() => {
         const a = Array.from(getLevelByID(game.level).gameText)
 
