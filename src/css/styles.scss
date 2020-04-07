@@ -18,139 +18,38 @@
 // @import "2-variables/colors";
 // @import "2-variables/settings";
 
-.bg {
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    background-image: url(https://svgshare.com/i/Aun.svg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
-.page {
-    position: absolute;
- 
-    left: 0;
-    right: 0;
-}
-
-
-
-
-.page-enter {
-    opacity: 0;
-    transform: scale(0);
-  }
-  
-  .page-enter-active {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 350ms, transform 350ms;
-  }
-  
-  .page-exit {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  .page-exit-active {
-    opacity: 0;
-    transform: scale(0.1);
-    transition: opacity 350ms, transform 350ms;
-  }
-  
-
-
-
-
-
-// .fade-enter {
-//     // opacity: 0.01;
-//    transform: scale(0.1);
-// }
-
-// .fade-enter.fade-enter-active {
-//     // opacity: 1;
-//     transform: scale(1);
-//     transition: 350ms ease-in;
-// }
-
-// .fade-exit {
-//     // opacity: 1;
-//     transform: scale(1);
-// }
-
-// .fade-exit.fade-exit-active {
-//     // opacity: 0.01;
-//     transition: 500ms ease-in;
-// }
-
-// .fade-enter {
-//     // opacity: 0.01;
-//    transform: scale(0.1);
-//   }
-
-//   .fade-enter.fade-enter-active {
-//     // opacity: 1;
-//     transform: scale(1);
-//     transition: 500ms ease-in;
-//   }
-
-//   .fade-exit {
-//     // opacity: 0.01;
-//     transform: scale(0.1);
-//   }
-
-//   .fade-exit.fade-exit-active {
-//     // opacity: 0.01;
-//    transform: scale(0.1);
-//     transition: 500ms ease-in;
-//   }
-
-//   div.transition-group {
-//     position: relative;
-//   }
-
-//   section.route-section {
-//     position: absolute;
-//     width: 100%;
-//     top: 0;
-//     left: 0;
-//   }
-@import "objects/lock";
 // ==========================================================================
-// 3-base
+// Base
 // ==========================================================================
 @import "base/normalize";
 @import "base/base";
 
+
 //==========================================================================
 // Layouts
 //==========================================================================
-@import "layouts/global";
-// @import "4-layouts/layout-helpers";
-// @import "4-layouts/site-footer";
-// @import "4-layouts/site-header";
-// @import "4-layouts/site-nav";
+@import "layouts/global"; 
 
+
+//==========================================================================
+// Components
+//==========================================================================
 @import "components/keyboard";
+@import "components/progress-bar";
+@import "components/box";
 
+
+//==========================================================================
+// Scenes
+//==========================================================================
 @import "scenes/menu";
+@import "scenes/page";
 
+
+// ==========================================================================
+// Objects
+// ==========================================================================
 @import "objects/letter";
-
-// ==========================================================================
-// 5-objects
-// ==========================================================================
-// @import "5-objects/buttons";
-// @import "5-objects/inputs";
-// @import "5-objects/page-headers";
-// @import "5-objects/scroll-down";
-// @import "5-objects/subpage-header";
-
-// ==========================================================================
-// 6-modules
-// ==========================================================================
-// @import "6-modules/about-author";
+@import "objects/lock";
  

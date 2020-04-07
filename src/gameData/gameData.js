@@ -10,7 +10,7 @@ export const gameData = [
                     {
                         id: 1,
                         gameText:
-                            "oGoodevening Madam! Today is a wonderful day. May I ask where your bothering this evening? It would be a pleasure to assist you in on this marverous journey!",
+                            "asas asas as",
                         locked: false,
                         completed: true
                     },

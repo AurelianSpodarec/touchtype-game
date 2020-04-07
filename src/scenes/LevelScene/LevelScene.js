@@ -11,45 +11,41 @@ import {
 
 import { Container, Keyboard } from '../../components';
 
-// function countWPM() {
-//     const wpmCount = Math.round((result.length / 5) / (60 - timer)) * 100
-//     setWPM(wpmCount)
-// }
-
-
-
-// function countWPM() {
-//     return
-// }
 
 function grossWPM(allTypedEntries, time) {
     console.log((allTypedEntries / 5) / time)
+    if (!time) return 0;
     return Math.floor((allTypedEntries / 5) / time * 60);
 }
 
 function netWPM(allTypedEntries, uncorrectedErrors, time) {
     const grossWPM = (allTypedEntries / 5) * 60;
     const netWPM = (grossWPM - uncorrectedErrors) / time
+    if (!time) return 0;
     return netWPM;
 }
 
-// function countAccuracy() {
-//     let incorrect = 0;
-//     const a = result.filter(wrong => {
-//         if (wrong === false) {
-//             incorrect++
-//         }
-//     })
-
-//     setAccuracy(Math.round((result.length - incorrect) * 100 / result.length));
-// }
-
-
-// function Timer() {
 
 
 
-// }
+
+// Start timer when the user has typed the first letter. 
+// End the timer when the user has reached the last letter
+//   - Save the WPM, and user results. 
+//   - Give him a score
+//   - Show a 'next level' or 'try again' buttons
+
+// Open a modal -  Based on WPM, give the user a star. 
+// Score is all stars compared to what the user got
+// Star lvl 1 brown, 2 silver, 3 gold - if user reached 3 stars, play party horn and some glitter
+
+
+function scoreSystem() {
+    // Speed: 20wpm 40wpm 60wpm
+    // Errors: Makes the score lower
+
+    // Show star bronze, silver, gold
+}
 
 function LevelScreen() {
 
@@ -77,6 +73,7 @@ function LevelScreen() {
     let audio = new Audio("/assets/audio/typewritter/key-press.mp3");
     let audioo = new Audio("/assets/audio/sound/computer-error-blip.mp3");
 
+
     const handleKeyPress = (e) => {
 
         setCurrentIndex(currentIndex + 1);
@@ -98,7 +95,7 @@ function LevelScreen() {
         setProgress(prog)
     }
 
-    function ba() {
+    function clock() {
         const start = Date.now();
         setInterval(function () {
             const delta = Date.now() - start;
@@ -107,14 +104,32 @@ function LevelScreen() {
         }, 500);
     }
 
+    function countAccuracy() {
+        let incorrect = 0;
+        const a = result.filter(wrong => {
+            if (wrong === false) {
+                incorrect++
+            }
+        })
+        if (result.length === 0) setAccuracy(0)
+        setAccuracy(Math.round((result.length - incorrect) * 100 / result.length));
+    }
+
+    function endGame() {
+        // get the wpm
+        // get the time
+
+        //show modal
+        // give score
+    }
+
     useEffect(() => {
         // console.log("usefefect", getLevelByID(game.level).gameText)
         const a = Array.from(getLevelByID(game.level).gameText)
 
         setGameText(a) // need to be dynamic
-        // countAccuracy();
+        countAccuracy();
         getProgress();
-
 
         window.addEventListener('keydown', handleKeyPress);
         return () => { window.removeEventListener('keydown', handleKeyPress) }
@@ -122,14 +137,13 @@ function LevelScreen() {
     }, [currentIndex])
 
     useEffect(() => {
-        // countWPM()
-        // getTime()
-        ba();
+        setWPM(grossWPM(result.length, seconds))
+    }, [seconds])
+
+    useEffect(() => {
+        clock();
     }, [])
 
-    // Based on WPM, give the user a star. 
-    // Score is all stars compared to what the user got
-    // Star lvl 1 brown, 2 silver, 3 gold - if user reached 3 stars, play party horn and some glitter
 
     return (
         <Container className="menu-scene ">
@@ -152,7 +166,7 @@ function LevelScreen() {
                 <div>
                     <p> Secnds {seconds}</p>
                     <p>Accuracy: {accuracy}%</p>
-                    <p>Speed: {grossWPM(result.length, seconds)} {WPM}WPM</p>
+                    <p>Speed: {WPM}WPM</p>
                     <p>Timer: {timer}</p>
                 </div>
             </div>

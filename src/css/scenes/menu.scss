@@ -1,3 +1,8 @@
+// ==========================================================================
+// #Menu
+// ==========================================================================
+
+//TODO: Refactor
 .menu-scene {
     display: flex;
     align-items: center;
@@ -28,48 +33,3 @@
     padding: 10px 20px;
     display: block;
 }
-
-// bobobobobobo
-
-
-
-
-
-
-.box {
-    display: block;;
-    cursor: pointer;
-    position: relative;
-    width: 160px;
-    height: 160px;
-    padding: 10px;
-    background-color: rgba(255,255,255,0.7);
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
-    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 3px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.all-wrap {
-    display: flex;
-    flex-direction: column;
-}
-
-.all-wrapp {
-    display: flex;
-    flex-direction: row;
-}
-
-
-@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');

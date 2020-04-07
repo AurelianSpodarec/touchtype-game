@@ -2,8 +2,20 @@
 // #Layout: Global
 // ==========================================================================
 
+//TODO: Refactor
 .container {
     max-width: 910px;
 	margin: 0 auto;
 	padding: 0 15px;
 }
+
+.all-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-wrapp {
+    display: flex;
+    flex-direction: row;
+}
+
