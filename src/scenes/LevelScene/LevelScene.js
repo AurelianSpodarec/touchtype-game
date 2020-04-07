@@ -79,7 +79,6 @@ function LevelScreen() {
 
     const handleKeyPress = (e) => {
 
-        // audio.play()
         setCurrentIndex(currentIndex + 1);
         setUserText(userText => [...userText, e.key]);
 
@@ -94,26 +93,10 @@ function LevelScreen() {
 
     }
 
-
-
-
-    // function getTime() {
-    //     setInterval(() => {
-    //         // const time = new Date().getSeconds()
-    //         setTimer(timer + 1)
-    //     }, 1000)
-    //     // console.log("Timer", time)
-    // }
-
-    // Create functions for these
-
-
     function getProgress() {
         let prog = (result.length / gameText.length) * 100
         setProgress(prog)
     }
-
-
 
     function ba() {
         const start = Date.now();
@@ -144,6 +127,9 @@ function LevelScreen() {
         ba();
     }, [])
 
+    // Based on WPM, give the user a star. 
+    // Score is all stars compared to what the user got
+    // Star lvl 1 brown, 2 silver, 3 gold - if user reached 3 stars, play party horn and some glitter
 
     return (
         <Container className="menu-scene ">
