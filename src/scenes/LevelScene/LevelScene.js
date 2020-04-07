@@ -65,6 +65,7 @@ function LevelScreen() {
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
 
+    const [gameEndResult, setGameEndresult] = useState({})
 
     const dispatch = useDispatch();
     const game = useSelector(state => state.game)
@@ -72,7 +73,8 @@ function LevelScreen() {
 
     let audio = new Audio("/assets/audio/typewritter/key-press.mp3");
     let audioo = new Audio("/assets/audio/sound/computer-error-blip.mp3");
-
+    let audioEnd = new Audio("/assets/audio/sound/party-horn.mp3");
+    let applauseSound = new Audio("/assets/audio/sound/applause.mp3");
 
     const handleKeyPress = (e) => {
 
@@ -116,6 +118,14 @@ function LevelScreen() {
     }
 
     function endGame() {
+
+        console.log("End game")
+
+        if (result.length === gameText.length) {
+            // audioEnd.play()
+            // applauseSound.play()
+        }
+
         // get the wpm
         // get the time
 
@@ -124,16 +134,15 @@ function LevelScreen() {
     }
 
     useEffect(() => {
-        // console.log("usefefect", getLevelByID(game.level).gameText)
         const a = Array.from(getLevelByID(game.level).gameText)
 
         setGameText(a) // need to be dynamic
         countAccuracy();
         getProgress();
+        endGame()
 
         window.addEventListener('keydown', handleKeyPress);
         return () => { window.removeEventListener('keydown', handleKeyPress) }
-
     }, [currentIndex])
 
     useEffect(() => {
@@ -148,8 +157,8 @@ function LevelScreen() {
     return (
         <Container className="menu-scene ">
 
-            <div>
 
+            <div>
                 <div>
                     {Array.from(gameText).map((letter, index) => {
                         return (
@@ -162,17 +171,18 @@ function LevelScreen() {
                             />
                         )
                     })}
+                    <ProgressBar progress={progress} />
+
+                    <Keyboard />
                 </div>
+
                 <div>
-                    <p> Secnds {seconds}</p>
+                    <p>Timer: {seconds}</p>
                     <p>Accuracy: {accuracy}%</p>
                     <p>Speed: {WPM}WPM</p>
-                    <p>Timer: {timer}</p>
                 </div>
             </div>
-            <ProgressBar progress={progress} />
 
-            <Keyboard />
         </Container>
     );
 }

@@ -10,7 +10,7 @@ export const gameData = [
                     {
                         id: 1,
                         gameText:
-                            "asas asas as",
+                            "aaaa",
                         locked: false,
                         completed: true
                     },
