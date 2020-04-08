@@ -3,21 +3,6 @@
 // ==========================================================================
 
 
-//TODO: Refactor
-.error {
-    color: darkred;
-    background: pink;
-}
-
-.valid {
-    color: #0e630e;
-    background: #e7fbd3;
-}
-
-.clear {
-    background: white;
-}
-
 .letter{
     width: 21px;
     height: 46px;
@@ -25,4 +10,18 @@
     font-size: 35px;
     border-radius: 4px;
     white-space: nowrap;
+
+    .error {
+        color: darkred;
+        background: pink;
+    }
+    
+    .valid {
+        color: #0e630e;
+        background: #e7fbd3;
+    }
+    
+    .clear {
+        background: white;
+    }
 }

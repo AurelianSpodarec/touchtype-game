@@ -4,11 +4,12 @@
 
 //TODO: Refactor
 .menu-scene {
-    display: flex;
+   
     align-items: center;
     justify-content: center;
     height: 100vh;
     flex-direction: column;
+    display: flex;
 }
 
 .menu-buttons {
@@ -32,4 +33,30 @@
     color: #2099b8;
     padding: 10px 20px;
     display: block;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.d-inline-flex {
+    
+}
+
+.flex-row {
+
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.align-vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.height-100vh {
+    height: 100vh;
 }

@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useAudio } from '../../hooks';
 
 
-function AudioButton() {
+function AudioButton({ children, audioURL }) {
+
+    const audio = useAudio(audioURL)
+
+    function playAudio() {
+        audio.play()
+    }
 
 
     return (
-        <div className="AudioButton">
+        <React.Fragment onClick={playAudio}>
             {children}
-        </div>
+        </React.Fragment>
     );
 }
 
 export default AudioButton;
+
+
+
+
+// const AudioButton = ({audioUrl, children }) => {
+//     const audio = useAudio(audioUrl)
+
+//     return <Button onClick={() => audio.play()}>{children}</Button>
+// }

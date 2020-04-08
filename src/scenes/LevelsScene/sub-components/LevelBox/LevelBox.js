@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { setLevel } from '../../../../store/actions/gameActions';
+import { AudioButton, Button } from '../../../../components';
 
 
 function LevelBox({ level, isLocked }) {
@@ -10,6 +11,7 @@ function LevelBox({ level, isLocked }) {
 
     let audio = new Audio("/assets/audio/click/locked-2.mp3");
     console.log("levelbox audio", audio)
+
     function onClick() {
         if (audio.paused) {
             audio.play();
@@ -18,31 +20,38 @@ function LevelBox({ level, isLocked }) {
         }
     }
 
-
     // change redux current level? 
 
     if (isLocked) {
         return (
-            <div key={level + 1} onClick={onClick} className="box">
-                <div className="lock">
-                    <div className="key-hole"></div>
-                </div>
-                <div key={level + 1}>
-                    {level && level}
-                    {isLocked && isLocked ? "LOCKED" : "Unlocked"}
-                </div>
-            </div>
+            <AudioButton audioURL="/assets/audio/click/locked-2.mp3">
+                <Button>
+                    <div key={level + 1} onClick={onClick} className="box">
+                        <div className="lock">
+                            <div className="key-hole"></div>
+                        </div>
+                        <div key={level + 1}>
+                            {level && level}
+                            {isLocked && isLocked ? "LOCKED" : "Unlocked"}
+                        </div>
+                    </div>
+                </Button>
+            </AudioButton>
         )
     }
 
 
     return (
-        <Link className="box" to={`/level/${level}`}>
-            <div>
-                {level && level}
-                {isLocked && isLocked ? "LOCKED" : "Unlocked"}
-            </div>
-        </Link>
+        <AudioButton audioURL="/assets/audio/click/locked-2.mp3">
+            <Button>
+                <Link className="box" to={`/level/${level}`}>
+                    <div>
+                        {level && level}
+                        {isLocked && isLocked ? "LOCKED" : "Unlocked"}
+                    </div>
+                </Link>
+            </Button>
+        </AudioButton >
     );
 }
 
