@@ -24,12 +24,3 @@ function AudioButton({ children, audioURL, className }) {
 }
 
 export default AudioButton;
-
-
-
-
-// const AudioButton = ({audioUrl, children }) => {
-//     const audio = useAudio(audioUrl)
-
-//     return <Button onClick={() => audio.play()}>{children}</Button>
-// }
