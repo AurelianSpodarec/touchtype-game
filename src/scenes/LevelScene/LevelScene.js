@@ -40,6 +40,8 @@ function netWPM(allTypedEntries, uncorrectedErrors, time) {
 // Star lvl 1 brown, 2 silver, 3 gold - if user reached 3 stars, play party horn and some glitter
 
 
+// To pass, the user needs to have at least 80% accuracy - user passes we give him a tick
+
 function scoreSystem() {
     // Speed: 20wpm 40wpm 60wpm
     // Errors: Makes the score lower

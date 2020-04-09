@@ -31,28 +31,16 @@ function MenuScreen() {
                 </div>
 
                 <div className="menu-buttons">
-                    <AudioButton audioURL="/assets/audio/click/tiny-push.mp3">
-                        <Button className="menu-button" >
-                            <Link className="menu-button-link" to="/levels">Touch Type Practice</Link>
-                        </Button>
+                    <AudioButton className="menu-button" audioURL="/assets/audio/click/tiny-push.mp3">
+                        <Link className="menu-button-link" to="/levels">Touch Type Practice</Link>
                     </AudioButton>
 
-
-                    <Button onClick={() => {
-                        audio.play()
-                        launch()
-                    }}>touch type</Button>
-
-                    <AudioButton audioURL="/assets/audio/click/tiny-push.mp3">
-                        <Button className="menu-button">
-                            <Link className="menu-button-link">Speed Test</Link>
-                        </Button>
+                    <AudioButton className="menu-button" audioURL="/assets/audio/click/tiny-push.mp3">
+                        <Link className="menu-button-link">Speed Test</Link>
                     </AudioButton>
 
-                    <AudioButton audioURL="/assets/audio/click/tiny-push.mp3">
-                        <Button className="menu-button" >
-                            <Link className="menu-button-link">Scores</Link>
-                        </Button>
+                    <AudioButton className="menu-button" audioURL="/assets/audio/click/tiny-push.mp3">
+                        <Link className="menu-button-link">Scores</Link>
                     </AudioButton>
                 </div>
             </div>
