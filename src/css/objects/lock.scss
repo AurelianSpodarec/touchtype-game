@@ -7,42 +7,46 @@
 .lock {
     display: flex;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 42px;
     background-color: gold;
     border-radius: 12px;
     position: relative;
+
+    &::before {
+        content: "";
+        width: 26px;
+        height: 15px;
+        border-radius: 40px 40px 0px 0px;
+        border: 5px solid #555;
+        border-bottom: none;
+        position: absolute;
+        top: -15px;
+        left: 11px;
+    }
 
     &:active {
         transition: 0.05s linear; // Put this in a class on click once clicked automate it, right now whne user presses it stays pressed
         transform: scale(0.8);
     }
-}
-.lock::before {
-    content: "";
-    width: 26px;
-    height: 18px;
-    border-radius: 40px 40px 0px 0px;
-    border: 5px solid #555;
-    border-bottom: none;
-    position: absolute;
-    top: -20px;
-    left: 11px;
-}
-.key-hole {
-    width: 13px;
-    height: 13px;
-    background-color: #555;
-    border-radius: 20px;
-    margin-top: 12px;
-    position: relative;
-}
 
-.key-hole::before {
-    content: "";
-    width: 0px;
-    height: 0px;
-    border: 6px solid transparent;
-    border-bottom: 18px solid #555;
-    position: absolute;
+    &__key-hole {
+        width: 12px;
+        height: 12px;
+        background-color: #555;
+        border-radius: 20px;
+        margin-top: 12px;
+        position: relative;
+
+        &::before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            border: 6px solid transparent;
+            border-bottom: 14px solid #555;
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+        }
+    }
 }

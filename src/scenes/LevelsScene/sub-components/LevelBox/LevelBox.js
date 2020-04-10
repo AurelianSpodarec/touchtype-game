@@ -14,24 +14,29 @@ function LevelBox({ level, isLocked, perfectScore, description }) {
         return (
             <AudioButton key={level.id} audioURL="/assets/audio/click/locked-2.mp3">
                 <div className="box">
+                    <div className="box__inner">
 
-                    <div>
-                        <div className="d-flex flex-row flex-space-between">
+
+                        <div className="box__header">
                             <div className="box__level">
                                 {level && level}
                             </div>
                         </div>
+                        <div className="box__content">
 
-                        <div className="box__lock">
-                            <div className="lock">
-                                <div className="key-hole"></div>
+
+                            <div className="box__lock">
+                                <div className="lock">
+                                    <div className="lock__key-hole"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="box__description">
-                        <span>Keys f & j</span>
-                    </div>
+                        <div className="box__description">
+                            <span>Keys f & j</span>
+                        </div>
 
+
+                    </div>
                 </div>
             </AudioButton>
         )
@@ -41,39 +46,43 @@ function LevelBox({ level, isLocked, perfectScore, description }) {
         <AudioButton key={level.id} audioURL="/assets/audio/click/tiny-push.mp3">
             <Link to={`/level/${level}`}>
                 <div className="box">
+                    <div className="box__inner">
 
-                    <div>
 
-                        <div className="d-flex flex-row flex-space-between">
+                        <div className="box__header">
+
                             <div className="box__level">
                                 {level && level}
                             </div>
 
-                            {/* {perfectScore && */}
+
                             <div>
                                 Win
-                            </div>
-                            {/* } */}
-                        </div>
-                        <div className="box__score-wrap">
-                            <div>
-                                ★☆☆
-                            </div>
-                            {/* <div className="checkmark">
-                                Check mark
-                            </div> */}
+                                    </div>
 
-                            {/* Bronze, sliver, gold stars */}
                         </div>
 
-                    </div>
-                    <div className="box__description">
-                        <span>Keys f & j</span>
-                    </div>
+                        <div className="box__content">
+                            <div className="box__score-wrap">
+                                <div>
+                                    ★☆☆
+                                </div>
+                                <div className="checkmark">
+                                    Check mark
+                                </div>
+                            </div>
+                        </div>
 
+
+                        <div className="box__description">
+                            <span>Keys f & j</span>
+                        </div>
+
+
+                    </div>
                 </div>
 
-            </Link>
+            </Link >
         </AudioButton >
     );
 }
