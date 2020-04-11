@@ -6,7 +6,8 @@
 .container {
     max-width: 910px;
 	margin: 0 auto;
-	padding: 0 15px;
+    padding: 0 15px;
+    height: 100vh;
 }
 
 .all-wrap {
@@ -19,3 +20,8 @@
     flex-direction: row;
 }
 
+.level-scene__inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}

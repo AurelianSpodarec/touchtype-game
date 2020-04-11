@@ -55,6 +55,8 @@ function LevelScreen() {
     const [userText, setUserText] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    const [paused, setPaused] = useState(true);
+
     const [result, setResult] = useState([]);
     // add timer
     const [accuracy, setAccuracy] = useState(0);
@@ -79,9 +81,14 @@ function LevelScreen() {
     let applauseSound = new Audio("/assets/audio/sound/applause.mp3");
 
     const handleKeyPress = (e) => {
+        console.log("Ss", gameText.length === result.length)
+        if (gameText.length != result.length) {
+            setPaused(false) // problem restarts
+        }
 
         setCurrentIndex(currentIndex + 1);
         setUserText(userText => [...userText, e.key]);
+
 
         if (e.key === gameText[currentIndex]) {
             audio.play()
@@ -101,19 +108,22 @@ function LevelScreen() {
 
     function clock() {
         const start = Date.now();
-        setInterval(function () {
-            const delta = Date.now() - start;
 
-            setSeconds(Math.floor(delta / 1000));
-        }, 500);
+        if (!paused) {
+            var a = setInterval(function () {
+                const delta = Date.now() - start;
+
+                setSeconds(Math.floor(delta / 1000));
+            }, 500);
+        } else {
+            clearInterval(a)
+        }
     }
 
     function countAccuracy() {
         let incorrect = 0;
         const a = result.filter(wrong => {
-            if (wrong === false) {
-                incorrect++
-            }
+            if (wrong === false) incorrect++
         })
         if (result.length === 0) setAccuracy(0)
         setAccuracy(Math.round((result.length - incorrect) * 100 / result.length));
@@ -124,6 +134,7 @@ function LevelScreen() {
         console.log("End game")
 
         if (result.length === gameText.length) {
+            setPaused(true)
             // audioEnd.play()
             // applauseSound.play()
         }
@@ -138,7 +149,7 @@ function LevelScreen() {
 
     useEffect(() => {
         const a = Array.from(getLevelByID(game.level).gameText)
-
+        console.log("aa", result, gameText)
         setGameText(a) // need to be dynamic
         countAccuracy();
         getProgress();
@@ -154,36 +165,45 @@ function LevelScreen() {
 
     useEffect(() => {
         clock();
-    }, [])
+    }, [paused])
 
+
+    // Don't start tiem untill first keystroke
+    // finish time when game text matches user text length
 
     return (
         <Container className="menu-scene ">
 
 
-            <div>
+            <div className="level-scene__inner">
                 <div>
-                    {Array.from(gameText).map((letter, index) => {
-                        return (
-                            <Letter
-                                key={index}
-                                letter={letter}
-                                index={index}
-                                currentIndex={currentIndex}
-                                result={result}
-                            />
-                        )
-                    })}
+                    <div className="level-scene__letters">
+                        {Array.from(gameText).map((letter, index) => {
+                            return (
+                                <Letter
+                                    key={index}
+                                    letter={letter}
+                                    index={index}
+                                    currentIndex={currentIndex}
+                                    result={result}
+                                />
+                            )
+                        })}
+                    </div>
                     <ProgressBar progress={progress} />
 
                     <Keyboard />
+
+                    <div>
+                        {paused ? " START typing to play" : ""}
+                        <p>Timer: {seconds}</p>
+                        <p>Accuracy: {accuracy}%</p>
+                        <p>Speed: {WPM}WPM</p>
+                    </div>
                 </div>
 
-                <div>
-                    <p>Timer: {seconds}</p>
-                    <p>Accuracy: {accuracy}%</p>
-                    <p>Speed: {WPM}WPM</p>
-                </div>
+
+
             </div>
 
         </Container>
