@@ -3,33 +3,49 @@
 // ==========================================================================
 
 .keyboard {
-
-    &__key-row {
-
-    }
-
-    &__key {
-
-    }
-
-}
-
-
-
-
-// TODO: Refactor
-.keyboard {
     text-align: center;
     font-size: 14px;
     font-family: sans-serif;
     color:  #777777;
+
+    &__key-row {
+        display: inline-block;
+        height: 3em;
+        margin: 0.2em;
+
+       & > div[data-pressed],
+       & > div:active {
+            background: white;
+            color: #aaa;
+            position: relative;
+            top: 0.2em;
+            box-shadow: 0 0 0 0.05em black;
+        }
+
+        & > * {
+                position: relative;
+                background: #fff;
+                text-align: center;
+                color: #777777;
+                float: left;
+                border-radius: 0.3em;
+                margin: 0.1em;
+                padding: 0.2em;
+                width: 3.3em;
+                height: 100%;
+                box-sizing: border-box;
+                cursor: pointer;
+                -webkit-user-select: none;
+                border: 1px solid #777777;
+            }
+        }
+
+    &__key {
+        font-size: 0.8em;
+    }
+
 }
 
-.keyboard__row {
-    display: inline-block;
-    height: 3em;
-    margin: 0.2em;
-}
 
 .keyboard__row--h1 {
     height: 1.7em;
@@ -40,37 +56,13 @@
     height: 3.3em;
 }
 
-.keyboard__row > * {
-    position: relative;
-    background: #fff;
-    text-align: center;
-    color: #777777;
-    float: left;
-    border-radius: 0.3em;
-    margin: 0.1em;
-    padding: 0.2em;
-    width: 3.3em;
-    height: 100%;
-    box-sizing: border-box;
-    cursor: pointer;
-    -webkit-user-select: none;
-    border: 1px solid #777777;
-    // box-shadow: 0 0.2em 0 0.05em #222;
-    // border-bottom-color: #555;
-}
+ 
 
 .keyboard__row--h1 > div {
     width: 3.5em;
 }
 
-.keyboard__row > div[data-pressed],
-.keyboard__row > div:active {
-    background: white;
-    color: #aaa;
-    position: relative;
-    top: 0.2em;
-    box-shadow: 0 0 0 0.05em black;
-}
+
 
 .key--w3 {
     width: 4.6em;
@@ -127,21 +119,6 @@
     font-size: 0.8em;
 }
 
-.key--arrow--tall > *,
-.key--arrow > * {
-    font-size: 0.5em;
-    line-height: 3em;
-}
-
-.key--arrow {
-    height: 1.8em;
-    margin-top: 1.7em;
-    line-height: 0.5em;
-}
-
-.key--arrow--tall > * {
-    padding-top: 0.2em;
-}
 
 .keyboard > .keyboard__row {
     text-align: center;

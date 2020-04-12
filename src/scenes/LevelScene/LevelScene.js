@@ -54,8 +54,8 @@ function LevelScreen() {
     const [gameText, setGameText] = useState([]);
     const [userText, setUserText] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-
     const [paused, setPaused] = useState(true);
+
 
     const [result, setResult] = useState([]);
     // add timer
@@ -63,13 +63,11 @@ function LevelScreen() {
     const [WPM, setWPM] = useState(0);
     const [progress, setProgress] = useState(0);
 
-
-    const [timer, setTimer] = useState(0);
-
     const [seconds, setSeconds] = useState(0);
-    const [isActive, setIsActive] = useState(false);
+
 
     const [gameEndResult, setGameEndresult] = useState({})
+
 
     const dispatch = useDispatch();
     const game = useSelector(state => state.game)
@@ -81,6 +79,7 @@ function LevelScreen() {
     let applauseSound = new Audio("/assets/audio/sound/applause.mp3");
 
     const handleKeyPress = (e) => {
+
         console.log("Ss", gameText.length === result.length)
         if (gameText.length != result.length) {
             setPaused(false) // problem restarts
@@ -146,11 +145,15 @@ function LevelScreen() {
         // give score
     }
 
+    useEffect(() => {
+        const a = Array.from(getLevelByID(game.level).gameText)
+        setGameText(a) // need to be dynamic
+    }, [])
 
     useEffect(() => {
         const a = Array.from(getLevelByID(game.level).gameText)
         console.log("aa", result, gameText)
-        setGameText(a) // need to be dynamic
+        // setGameText(a) // need to be dynamic
         countAccuracy();
         getProgress();
         endGame()
