@@ -1,14 +1,6 @@
 import React from 'react';
 
 
-function Key() {
-
-    return {
-
-    }
-}
-
-
 // REFACTOR HTML
 function Keyboard() {
 
