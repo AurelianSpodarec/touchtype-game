@@ -26,6 +26,94 @@ function netWPM(allTypedEntries, uncorrectedErrors, time) {
 }
 
 
+// TODO: Add a platinium color if the user reaches 100% accuracy with over 50WPM
+function starScore({ accuracy, wpm }) {
+
+    // If user has 80-89% - bronze star, if uesr has 95%+ gold star
+    // const accuracy/
+
+
+    const starColors = ["bronze", "silver", "gold"];
+
+
+    // If user has 40wpm, but 80% accuracy, what do yoooou do ? Give him one star, is accuracy preffered or do something..
+
+    // Show each start to be full if it matches the requirement. 
+
+    //TODO: Animate the stars from up to down 
+    // Show empty stars, and animate a full star wen enetering perhaps
+
+    // Focus on accuracy for now
+    // Bronze 80-89% or WPM 0 -20
+    // Silver 90-95% or WPM 20 -39
+    // Gold 95%+ wpm or 40+
+
+    // Do math Math
+    // No float allowed - at least for now
+    // Points = 100% is 2000 score
+    // 0.1% = 2
+    // User has 84% = 1840 score
+
+    let badge;
+    let badgeCount;
+    switch (accuracy) {
+        case accuracy === 80 <= 89:
+            badge = "bronze"
+            badgeCount = 1
+            break;
+        case accuracy === 90 <= 95:
+            badge = "silver";
+            badgeCount = 2
+            break;
+        case accuracy < 95:
+            badge = "gold"
+            badgeCount = 3
+            break;
+        case 100:
+            badge = "master"
+            badgeCount = 3
+            break;
+        default:
+            badge = "bronze"
+    }
+
+    function starOutline() {
+        return (
+            <>
+                ☆
+            </>
+        )
+    }
+
+    function starFull() {
+        return (
+            <>
+                ★
+            </>
+        )
+    }
+
+    // Animate inside store
+
+    function starRow() {
+
+
+        return (
+            <>
+                for (i = 0; i < badgeCount; {
+                    starFull()
+                }
+            </>
+        )
+    }
+
+    return (
+        <div>
+            {starRow}
+        </div>
+    )
+}
+
 
 
 
