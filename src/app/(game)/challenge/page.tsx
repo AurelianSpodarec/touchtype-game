@@ -1,12 +1,13 @@
 'use client'
 
+import KeyboardMac from '@/components/Keyboard/Mac';
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Alpabeth testssss
 
 const level = {
-  text: "this is a speed test type, wohooo!"
+  text: "tHis is a speed test type, wohooo!"
 }
 
 const textWord = {
@@ -27,61 +28,34 @@ interface Character {
 }
 
 function RenderCharacterList({ textList, state }: { textList: Character[] }) {
-  // string to array of letters
-  return textList.map((text, index: number) => {
-    return (
-      <Character character={text} state={state[index]} />
-    )
-  })
+  return textList.map((text, index: number) => (
+    <Character key={index} character={text} state={state[index]} />
+  ));
 }
 
-// function RenderWords() {
-//   return (
-//     <div>
 
-//     </div>
-//   )
-// }
-
-// function createCharacterGroup({ word }) {
-//   // transform the word to single charactrs
-//   // "String"
-//   return (
-//     <div className="group">
-
-//     </div>
-//   )
-// }
-
-interface characterObject {
+interface CharacterState {
   corrected: boolean;
   status: "correct" | "wrong" | "corrected" | "default";
 }
 
-const characterObject = {
-  corrected: false,
-  status: "correct"
-}
 
-
-function Character({ character, state }: Character) {
+const Character = React.memo(({ character, state }: { character: Character, state: CharacterState }) => {
   console.log(state)
-  // Is Correct
-  // Is wrong
-  // Was corrected with bakspace
-  // charactersState
   const statusClass = {
     correct: "green",
     wrong: "red",
     corrected: "orange"
-  }
+  };
 
   return (
     <span className="min-w-2 outline-1 outline-white text-2xl" style={{ background: statusClass[state?.status] }}>
       {character}
     </span>
-  )
-}
+  );
+},
+  (prevProps, nextProps) => prevProps.character === nextProps.character && prevProps.state === nextProps.state
+);
 
 export default function Challenge() {
   const compiledTextChallenge = level.text.split('');
@@ -92,28 +66,50 @@ export default function Challenge() {
   // Functions
   // ===================================================================
 
-  function characterPress(e) {
-    const currentKeyMatch = currentCharacter === e.key
-    const updatedCharactersState: any = [...charactersState];
+  // Show different keyboard layout based on the OS
+  // console.log(navigator.userAgent.includes('Mac'))
 
-    if (currentKeyMatch) {
-      updatedCharactersState[currentCharacterIndex] = {
-        corrected: false,
-        status: "correct",
-      };
-    } else {
-      updatedCharactersState[currentCharacterIndex] = {
-        corrected: false,
-        status: "wrong",
-      };
+  const ignoredKeys = ['Shift', 'Control', 'Alt', 'CapsLock', 'Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+  function characterPress(e) {
+    if (ignoredKeys.includes(e.key)) {
+      return;
     }
 
+    const currentKeyMatch = currentCharacter === e.key;
+
+    setCharactersState((prevCharactersState) => {
+      const updatedState = [...prevCharactersState];
+      updatedState[currentCharacterIndex] = {
+        corrected: false,
+        status: currentKeyMatch ? "correct" : "wrong",
+      };
+      return updatedState;
+    });
+
     setCurrentCharacterIndex(currentCharacterIndex + 1);
-    setCharactersState(updatedCharactersState);
   }
 
   function backspacePress() {
     setCurrentCharacterIndex(currentCharacterIndex - 1);
+    setCharactersState((prevCharactersState) => {
+      const updatedState = [...prevCharactersState];
+      updatedState[currentCharacterIndex] = {
+        corrected: true,
+        status: ""
+      };
+      return updatedState;
+    });
+  }
+
+  function checkIfGameEnds() {
+    const lastCharacter = compiledTextChallenge.length - 1 === currentCharacterIndex
+    if (lastCharacter) {
+      // stop timer
+      // show modal
+      console.log("game ended")
+    } else {
+      console.log("game in progress")
+    }
   }
 
   function handleKeyPress(e: any) {
@@ -128,7 +124,8 @@ export default function Challenge() {
   // ===================================================================
 
   useEffect(() => {
-    console.log("charactersState", charactersState)
+    // console.log("charactersState", charactersState)
+    checkIfGameEnds()
   }, [currentCharacterIndex]);
 
   useEffect(() => {
@@ -136,12 +133,17 @@ export default function Challenge() {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [currentCharacterIndex, compiledTextChallenge]); // Include compiledTextChallenge in the dependency array
+  }, [currentCharacterIndex, compiledTextChallenge]);
 
-  // State 
   return (
     <main>
-      <RenderCharacterList textList={compiledTextChallenge} state={charactersState} />
+      <div className="mx-auto max-w-4xl">
+      {/* <img src="https://tailwindui.com/img/beams-home@95.jpg" alt="" className="absolute -top-[1rem] left-1/2 -ml-[40rem] w-[163.125rem] max-w-none sm:-ml-[67.5rem]" /> */}
+        <div className="my-20">
+          <RenderCharacterList textList={compiledTextChallenge} state={charactersState} />
+        </div>
+        <KeyboardMac />
+      </div>
     </main>
   )
 }
