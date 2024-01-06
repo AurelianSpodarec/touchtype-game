@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 // Alpabeth testssss
 
 const level = {
-  text: "tHis is a speed test type, wohooo!"
+  text: "As I unleash my keyboard prowess, my fingers are practically setting off smoke alarms with their blazing speed. It's like my hands are on a mission to prove that caffeine isn't the only stimulant in the room. If my typing skills were a superpower, they'd be the envy of every comic book hero – move over, Spider-Man, there's a new quick-fingered vigilante in town, and my arch-nemesis is the backspace key."
 }
 
 const textWord = {
@@ -136,7 +136,7 @@ export default function Challenge() {
   }, [currentCharacterIndex, compiledTextChallenge]);
 
   return (
-    <main>
+    <main className="overflow-hidden">
       <div className="mx-auto max-w-4xl">
       {/* <img src="https://tailwindui.com/img/beams-home@95.jpg" alt="" className="absolute -top-[1rem] left-1/2 -ml-[40rem] w-[163.125rem] max-w-none sm:-ml-[67.5rem]" /> */}
         <div className="my-20">

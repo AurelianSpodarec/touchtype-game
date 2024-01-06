@@ -1,12 +1,14 @@
 import keyboardLayoutMac from "./mac-keyboard-layout";
 
-function KeyboardMac() {
+function KeyboardMac({ event }) {
 
   const renderKey = (key, rowIndex, keyIndex) => (
-    <div key={keyIndex} className="key">
-      <div className={`key-content key-${key.type}`}>
-        <span>{key.shiftSymbol}</span>
-        <span>{key.label}</span>
+    <div key={keyIndex} className={`key w-full key-${key.type}`}>
+      <div className={`key-content key-${key.symbolType}`}>
+        {key.symbol &&
+          <span>{key.shiftSymbol}</span>
+        }
+        <span className="w-full">{key.label}</span>
       </div>
     </div>
   );
