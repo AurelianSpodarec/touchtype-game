@@ -15,35 +15,34 @@ function useKeyboard() {
 
   const handleKeyPress = (event) => {
     const { key } = event;
-    
-    if(event.code === "Space") {
-      const audioInstance = new Audio("/assets/sound/key-press-spacebar.mp3");
-      audioInstance.volume = 0.5;
-      audioInstance.play();
-    } else {
-      const soundFile = getRandomSound();
-      const audioInstance = new Audio(soundFile);
-      audioInstance.play();
-    }
 
     if (!pressedKeys.includes(key)) {
+      if (event.code === "Space") {
+        const audioInstance = new Audio("/assets/sound/key-press-spacebar.mp3");
+        audioInstance.volume = 0.5;
+        audioInstance.play();
+      } else {
+        const soundFile = getRandomSound();
+        const audioInstance = new Audio(soundFile);
+        audioInstance.play();
+      }
+
       setPressedKeys((prevKeys) => [...prevKeys, key]);
     }
   };
 
   const handleKeyRelease = (event) => {
     const { key } = event;
-    // audioKey1.currentTime = 0
     setPressedKeys((prevKeys) => prevKeys.filter((pressedKey) => pressedKey !== key));
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyPress);
-    window.addEventListener('keyup', handleKeyRelease);
+    window.addEventListener("keydown", handleKeyPress);
+    window.addEventListener("keyup", handleKeyRelease);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-      window.removeEventListener('keyup', handleKeyRelease);
+      window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("keyup", handleKeyRelease);
     };
   }, [pressedKeys]);
 

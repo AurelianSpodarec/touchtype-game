@@ -1,11 +1,13 @@
 'use client'
 
+import CharacterList from '@/components/Character/CharacterList';
 import KeyboardMac from '@/components/Keyboard/Mac';
-import useKeyboard from '@/components/Keyboard/useKeyboard';
-import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
 
 // Alpabeth testssss
+// Speed test with other people
+// Multiplayer
+// Scary intense soundtracks for 60seconds
 
 const level = {
   text: "As I unleash my keyboard prowess, my fingers are practically setting off smoke alarms with their blazing speed. It's like my hands are on a mission to prove that caffeine isn't the only stimulant in the room. If my typing skills were a superpower, they'd be the envy of every comic book hero – move over, Spider-Man, there's a new quick-fingered vigilante in town, and my arch-nemesis is the backspace key."
@@ -23,42 +25,6 @@ const textWord = {
 // Check for WPM
 // Track Accuracy
 // Typing speed with mouse only
-
-interface Character {
-  character: string;
-  status: "correct" | "wrong" | "corrected"
-}
-
-function RenderCharacterList({ textList, state }: { textList: Character[] }) {
-  return textList.map((text, index: number) => (
-    <Character key={index} character={text} state={state[index]} />
-  ));
-}
-
-
-interface CharacterState {
-  corrected: boolean;
-  status: "correct" | "wrong" | "corrected" | "default";
-}
-
-
-const Character = React.memo(({ character, state }: { character: Character, state: CharacterState }) => {
-  console.log(state)
-  const statusClass = {
-    correct: "green",
-    wrong: "red",
-    corrected: "orange"
-  };
-
-  return (
-    <span className="min-w-2 outline-1 outline-white text-2xl" style={{ background: statusClass[state?.status] }}>
-      {character}
-    </span>
-  );
-},
-  (prevProps, nextProps) => prevProps.character === nextProps.character && prevProps.state === nextProps.state
-);
-
 
 
 export default function Challenge() {
@@ -138,11 +104,13 @@ export default function Challenge() {
   }, [currentCharacterIndex, compiledTextChallenge]);
 
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden bg-[#2c303b]">
       <div className="mx-auto max-w-4xl">
-        {/* <img src="https://tailwindui.com/img/beams-home@95.jpg" alt="" className="absolute -top-[1rem] left-1/2 -ml-[40rem] w-[163.125rem] max-w-none sm:-ml-[67.5rem]" /> */}
+        WPM
+        Accuracy
+        Real Accuracy
         <div className="my-20 text-gray-200">
-          <RenderCharacterList textList={compiledTextChallenge} state={charactersState} />
+          <CharacterList textList={compiledTextChallenge} state={charactersState} isActive={currentCharacterIndex} />
         </div>
         <KeyboardMac />
       </div>

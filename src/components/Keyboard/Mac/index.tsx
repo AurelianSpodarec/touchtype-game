@@ -6,7 +6,7 @@ function KeyboardMac() {
   // pressedKeys [] if any matches the key.code put calss 'active'
   function renderKey(key, rowIndex, keyIndex) {
     const isActive = pressedKeys.includes(key.key) //"r" === key.key
-    console.log("wop", isActive)
+    console.log("wop", pressedKeys)
     return (
       <div key={keyIndex} className={`key is-active w-full key-${key.type}`}>
         <div className={`key-content key-${key.symbolType} ${isActive ? "key-content-is-active" : ""}`}>

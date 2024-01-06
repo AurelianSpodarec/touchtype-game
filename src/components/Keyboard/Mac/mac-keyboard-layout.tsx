@@ -47,10 +47,10 @@ const keyboardLayoutMac = {
       { key: "l", label: "L", type: "key" },
       { key: ";", label: ";", symbol: ";", shiftSymbol: ":", altSymbol: "", type: "key", symbolType: "number" },
       { key: "'", label: "'", symbol: "'", shiftSymbol: "\"", altSymbol: "", type: "key", symbolType: "number" },
-      { key: "enter", label: "Enter" },
+      { key: "Enter", label: "Enter" },
     ],
     [
-      { key: "shift", label: "Shift" },
+      { key: "Shift", label: "Shift" },
       { key: "z", label: "Z", type: "key" },
       { key: "x", label: "X", type: "key" },
       { key: "c", label: "C", type: "key" },
@@ -61,15 +61,15 @@ const keyboardLayoutMac = {
       { key: ",", label: ",", symbol: ",", shiftSymbol: "<", altSymbol: "", type: "key", symbolType: "number" },
       { key: ".", label: ".", symbol: ".", shiftSymbol: ">", altSymbol: "", type: "key", symbolType: "number" },
       { key: "/", label: "/", symbol: "/", shiftSymbol: "?", altSymbol: "", type: "key", symbolType: "number" },
-      { key: "shift", label: "Shift" },
+      { key: "Shift", label: "Shift" },
     ],
     [
-      { key: "ctrl", label: "Control" },
-      { key: "option", label: "Option" },
-      { key: "command", label: "Command" },
+      { key: "Ctrl", label: "Control" },
+      { key: "Option", label: "Option" },
+      { key: "Command", label: "Command" },
       { key: "Space", label: "Space", type: "space" },
-      { key: "command", label: "Command" },
-      { key: "option", label: "Option" },
+      { key: "Command", label: "Command" },
+      { key: "Option", label: "Option" },
       [
         {
           key: "left", label: <svg
