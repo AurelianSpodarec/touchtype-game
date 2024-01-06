@@ -1,7 +1,8 @@
+import useKeyboard from "../useKeyboard";
 import keyboardLayoutMac from "./mac-keyboard-layout";
 
-function KeyboardMac({ pressedKeys }) {
-
+function KeyboardMac() {
+  const pressedKeys = useKeyboard();
   // pressedKeys [] if any matches the key.code put calss 'active'
   function renderKey(key, rowIndex, keyIndex) {
     const isActive = pressedKeys.includes(key.key) //"r" === key.key

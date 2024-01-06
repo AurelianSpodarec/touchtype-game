@@ -67,7 +67,7 @@ const keyboardLayoutMac = {
       { key: "ctrl", label: "Control" },
       { key: "option", label: "Option" },
       { key: "command", label: "Command" },
-      { key: "space", label: "Space", type: "space" },
+      { key: "Space", label: "Space", type: "space" },
       { key: "command", label: "Command" },
       { key: "option", label: "Option" },
       [
