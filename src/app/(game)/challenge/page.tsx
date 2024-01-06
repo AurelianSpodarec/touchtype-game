@@ -57,23 +57,66 @@ const Character = React.memo(({ character, state }: { character: Character, stat
   (prevProps, nextProps) => prevProps.character === nextProps.character && prevProps.state === nextProps.state
 );
 
+
+
+function useHookKeyboard() {
+  const [pressedKeys, setPressedKeys] = useState([]);
+
+  const handleKeyPress = (event) => {
+    const { key } = event;
+
+    if (!pressedKeys.includes(key)) {
+      setPressedKeys((prevKeys) => [...prevKeys, key]);
+    }
+  };
+
+  const handleKeyRelease = (event) => {
+    const { key } = event;
+    setPressedKeys((prevKeys) => prevKeys.filter((pressedKey) => pressedKey !== key));
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener('keyup', handleKeyRelease);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('keyup', handleKeyRelease);
+    };
+  }, [pressedKeys]);
+
+  return pressedKeys;
+}
+
+
+
 export default function Challenge() {
   const compiledTextChallenge = level.text.split('');
   const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
   const [charactersState, setCharactersState] = useState([{}])
   const currentCharacter = compiledTextChallenge[currentCharacterIndex];
-
+  // const [pressed]
+  // Pressed keys = [] , check if they are pressed, if not take them out
+  // on press up, take the keys out
+  // const [pressedKeys, setPressedkeys] = useState([])
+  const pressedKeys = useHookKeyboard();
   // Functions
   // ===================================================================
 
   // Show different keyboard layout based on the OS
   // console.log(navigator.userAgent.includes('Mac'))
+  function handleKeyUp(e) {
+    const updatedKeys = pressedKeys.filter((key) => key !== e.key);
+    // setPressedkeys(updatedKeys);
+  }
 
   const ignoredKeys = ['Shift', 'Control', 'Alt', 'CapsLock', 'Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
   function characterPress(e) {
     if (ignoredKeys.includes(e.key)) {
       return;
     }
+
+    // setPressedkeys([...pressedKeys, e.key])
 
     const currentKeyMatch = currentCharacter === e.key;
 
@@ -128,21 +171,25 @@ export default function Challenge() {
     checkIfGameEnds()
   }, [currentCharacterIndex]);
 
+  console.log(pressedKeys)
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
+    window.removeEventListener('keyup', handleKeyUp);
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('keyup', handleKeyUp);
     };
   }, [currentCharacterIndex, compiledTextChallenge]);
 
   return (
     <main className="overflow-hidden">
       <div className="mx-auto max-w-4xl">
-      {/* <img src="https://tailwindui.com/img/beams-home@95.jpg" alt="" className="absolute -top-[1rem] left-1/2 -ml-[40rem] w-[163.125rem] max-w-none sm:-ml-[67.5rem]" /> */}
-        <div className="my-20">
+        {/* <img src="https://tailwindui.com/img/beams-home@95.jpg" alt="" className="absolute -top-[1rem] left-1/2 -ml-[40rem] w-[163.125rem] max-w-none sm:-ml-[67.5rem]" /> */}
+        <div className="my-20 text-gray-200">
           <RenderCharacterList textList={compiledTextChallenge} state={charactersState} />
         </div>
-        <KeyboardMac />
+        <KeyboardMac pressedKeys={pressedKeys} />
       </div>
     </main>
   )

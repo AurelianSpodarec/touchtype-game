@@ -1,17 +1,22 @@
 import keyboardLayoutMac from "./mac-keyboard-layout";
 
-function KeyboardMac({ event }) {
+function KeyboardMac({ pressedKeys }) {
 
-  const renderKey = (key, rowIndex, keyIndex) => (
-    <div key={keyIndex} className={`key w-full key-${key.type}`}>
-      <div className={`key-content key-${key.symbolType}`}>
-        {key.symbol &&
-          <span>{key.shiftSymbol}</span>
-        }
-        <span className="w-full">{key.label}</span>
+  // pressedKeys [] if any matches the key.code put calss 'active'
+  function renderKey(key, rowIndex, keyIndex) {
+    const isActive = pressedKeys.includes(key.key) //"r" === key.key
+    console.log("wop", isActive)
+    return (
+      <div key={keyIndex} className={`key is-active w-full key-${key.type}`}>
+        <div className={`key-content key-${key.symbolType} ${isActive ? "key-content-is-active" : ""}`}>
+          {key.symbol &&
+            <span>{key.shiftSymbol}</span>
+          }
+          <span className="w-full">{key.label}</span>
+        </div>
       </div>
-    </div>
-  );
+    )
+  };
 
   const renderRow = (row, rowIndex) => (
     <div key={rowIndex} className="keyboadr-inner">

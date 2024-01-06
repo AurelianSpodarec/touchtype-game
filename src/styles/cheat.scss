@@ -139,6 +139,12 @@ body {
           box-shadow: 0 0.3vmin rgba(0, 0, 0, 0.6);
           background-color: rgba(#111, 0.9);
         }
+
+        &-is-active {
+          top: 0vmin;
+          box-shadow: 0 0.3vmin rgba(0, 0, 0, 0.6);
+          background-color: rgba(#111, 0.9);
+        }
         
         @keyframes color {
           0% { color: var(--keyboard-red); }
