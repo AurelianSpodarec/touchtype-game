@@ -1,6 +1,32 @@
 import PianoLine from "./_components/PianoLine";
 import PianoParticle from "./_components/PianoParticle";
 
+const music = [
+  {
+    name: "Test",
+    audio: "test",
+    notes: [
+      { key: "A", duration: 1, time: 0 },
+      { key: "S", duration: 1, time: 1 },
+      { key: "D", duration: 1, time: 1.2 },
+      { key: "F", duration: 1, time: 1.4 },
+
+      { key: "F", duration: 3, time: 6 },
+      { key: "D", duration: 3, time: 9 },
+      { key: "J", duration: 4, time: 11 },
+      { key: "F", duration: 5, time: 15 },
+      { key: "D", duration: 6, time: 15 },
+      { key: "J", duration: 4, time: 20 },
+      { key: "L", duration: 4, time: 20 },
+      { key: "A", duration: 1, time: 21 },
+      { key: "S", duration: 1, time: 22 },
+      { key: "D", duration: 1, time: 23 },
+      { key: "F", duration: 1, time: 24 },
+      { key: "M", duration: 6, time: 26 },
+    ]
+  }
+]
+
 class PianoGame {
   constructor(canvas, context, audio) {
     this.canvas = canvas;
@@ -13,26 +39,13 @@ class PianoGame {
     this.score = 0;
     this.audio = new Audio('https://archive.org/embed/ComptineDunAutreEte/YannTiersen-ComptineDunAutreEte.mp3');
     this.audio.loop = true;
-    this.noteSequence = [
-      { key: "A", duration: 1, time: 0 },
-      { key: "S", duration: 5, time: 2 },
-      { key: "D", duration: 1, time: 4 },
-      { key: "J", duration: 5, time: 4 },
-      { key: "F", duration: 3, time: 6 },
-      { key: "D", duration: 3, time: 9 },
-      { key: "J", duration: 4, time: 11 },
-      { key: "F", duration: 5, time: 15 },
-      { key: "D", duration: 6, time: 15 },
-      { key: "J", duration: 4, time: 20 },
-      { key: "F", duration: 2, time: 21 },
-      // Add more notes and timestamps as needed
-    ];
+    this.noteSequence = music[0].notes;
     this.noteIndex = 0;
     this.initializeEventListeners();
     this.startGame();
   }
 
-  
+
   initializeEventListeners() {
     window.addEventListener("keydown", this.checkKeyPress.bind(this));
     window.addEventListener("keyup", this.checkKeyUp.bind(this));
@@ -70,8 +83,12 @@ class PianoGame {
 
     this.lines.forEach(line => {
       line.y += this.lineSpeed;
-      this.ctx.fillStyle = line.hit ? "#00ff00" : "#333";
-      this.ctx.fillRect(line.x, line.y, line.width, line.height);
+      // this.ctx.fillStyle = line.hit ? "#00ff00" : "#333";
+      // this.ctx.fillRect(line.x, line.y, line.width, line.height, 50);
+      this.ctx.beginPath();
+      this.ctx.fillStyle = "green";
+      this.ctx.roundRect(line.x, line.y, line.width, line.height, line.borderRadius);
+      this.ctx.stroke();
 
       this.ctx.font = "20px Arial";
       this.ctx.fillStyle = "#fff";
@@ -87,7 +104,7 @@ class PianoGame {
     });
 
     this.ctx.font = "16px Arial";
-    this.ctx.fillStyle = "#333";
+    this.ctx.fillStyle = "#777";
     this.ctx.fillText(`Score: ${this.score}`, 20, 40);
 
     requestAnimationFrame(this.draw.bind(this));
@@ -97,15 +114,20 @@ class PianoGame {
     if (this.noteIndex < this.noteSequence.length) {
       const note = this.noteSequence[this.noteIndex];
       const key = note.key;
-      const duration = note.duration || 1; // Default duration to 1 second if not specified
-      const height = duration * 50; // Adjust the factor based on your preference
-  
+      const x = 100 * this.keys.indexOf(key) + 10;
+      const y = 0;
+      const duration = note.duration || 1;
+      const height = duration * 50;
+      const width = 50;
+      const borderRadius = 10;
+
       const line = new PianoLine(
         key,
-        50 * this.keys.indexOf(key) + 10,
-        0,
-        Math.random() * (60 - 30) + 30,
-        height
+        x,
+        y,
+        width,
+        height,
+        borderRadius
       );
       this.lines.push(line);
       this.noteIndex++;
@@ -150,6 +172,7 @@ class PianoGame {
     this.audio.play();
     setInterval(this.spawnLineByNote.bind(this), 2000);
     this.draw();
+    
   }
 }
 
