@@ -23,9 +23,9 @@ const music = [
       { key: "D", duration: 1, time: 23 },
       { key: "F", duration: 1, time: 24 },
       { key: "M", duration: 6, time: 26 },
-    ]
-  }
-]
+    ],
+  },
+];
 
 class PianoGame {
   constructor(canvas, context, audio) {
@@ -37,14 +37,15 @@ class PianoGame {
     this.particles = [];
     this.keysPressed = {};
     this.score = 0;
-    this.audio = new Audio('https://archive.org/embed/ComptineDunAutreEte/YannTiersen-ComptineDunAutreEte.mp3');
+    this.audio = new Audio(
+      "https://archive.org/embed/ComptineDunAutreEte/YannTiersen-ComptineDunAutreEte.mp3"
+    );
     this.audio.loop = true;
     this.noteSequence = music[0].notes;
     this.noteIndex = 0;
     this.initializeEventListeners();
     this.startGame();
   }
-
 
   initializeEventListeners() {
     window.addEventListener("keydown", this.checkKeyPress.bind(this));
@@ -55,13 +56,19 @@ class PianoGame {
     const key = event.key.toUpperCase();
     this.keysPressed[key] = true;
 
-    const hitLine = this.lines.find(line => line.key === key && line.y + line.height >= this.canvas.height - 10);
+    const hitLine = this.lines.find(
+      (line) =>
+        line.key === key && line.y + line.height >= this.canvas.height - 10
+    );
 
     if (hitLine) {
       hitLine.hit = true;
       if (!hitLine.sparkles) {
         hitLine.sparkles = true;
-        this.createParticles(hitLine.x + hitLine.width / 2, hitLine.y + hitLine.height / 2);
+        this.createParticles(
+          hitLine.x + hitLine.width / 2,
+          hitLine.y + hitLine.height / 2
+        );
       }
     }
   }
@@ -70,7 +77,7 @@ class PianoGame {
     const key = event.key.toUpperCase();
     this.keysPressed[key] = false;
 
-    const hitLine = this.lines.find(line => line.key === key && line.hit);
+    const hitLine = this.lines.find((line) => line.key === key && line.hit);
 
     if (hitLine) {
       hitLine.hit = false;
@@ -81,21 +88,34 @@ class PianoGame {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.lines.forEach(line => {
+    this.lines.forEach((line) => {
       line.y += this.lineSpeed;
       // this.ctx.fillStyle = line.hit ? "#00ff00" : "#333";
       // this.ctx.fillRect(line.x, line.y, line.width, line.height, 50);
       this.ctx.beginPath();
       this.ctx.fillStyle = "green";
-      this.ctx.roundRect(line.x, line.y, line.width, line.height, line.borderRadius);
+      this.ctx.roundRect(
+        line.x,
+        line.y,
+        line.width,
+        line.height,
+        line.borderRadius
+      );
       this.ctx.stroke();
 
       this.ctx.font = "20px Arial";
       this.ctx.fillStyle = "#fff";
-      this.ctx.fillText(line.key, line.x + line.width / 2 - 5, line.y + line.height / 2 + 5);
+      this.ctx.fillText(
+        line.key,
+        line.x + line.width / 2 - 5,
+        line.y + line.height / 2 + 5
+      );
 
       if (line.sparkles && this.keysPressed[line.key]) {
-        this.drawParticles(line.x + line.width / 2, line.y + line.height / 2);
+        this.drawParticles(
+          line.x + line.width / 2,
+          line.y + line.height / 2
+        );
       }
 
       if (line.y > this.canvas.height) {
@@ -121,14 +141,7 @@ class PianoGame {
       const width = 50;
       const borderRadius = 10;
 
-      const line = new PianoLine(
-        key,
-        x,
-        y,
-        width,
-        height,
-        borderRadius
-      );
+      const line = new PianoLine(key, x, y, width, height, borderRadius);
       this.lines.push(line);
       this.noteIndex++;
     }
@@ -136,15 +149,17 @@ class PianoGame {
 
   createParticles(x, y) {
     for (let i = 0; i < 10; i++) {
-      this.particles.push(new PianoParticle(
-        x,
-        y,
-        Math.random() * 5 + 2,
-        (Math.random() - 0.5) * 4,
-        (Math.random() - 0.5) * 4,
-        "#ffcc00",
-        20
-      ));
+      this.particles.push(
+        new PianoParticle(
+          x,
+          y,
+          Math.random() * 5 + 2,
+          (Math.random() - 0.5) * 4,
+          (Math.random() - 0.5) * 4,
+          "#ffcc00",
+          20
+        )
+      );
     }
   }
 
@@ -169,10 +184,11 @@ class PianoGame {
   }
 
   startGame() {
-    this.audio.play();
-    setInterval(this.spawnLineByNote.bind(this), 2000);
-    this.draw();
-    
+    setTimeout(() => {
+      this.audio.play();
+      setInterval(this.spawnLineByNote.bind(this), 1000 / this.lineSpeed);
+      this.draw();
+    }, 2000);
   }
 }
 

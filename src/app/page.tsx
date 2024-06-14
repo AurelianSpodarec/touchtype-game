@@ -5,33 +5,72 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
 
-        <header>
-          Blaze Typing
+      <header>
+        Blaze Typing
 
-          About
-          Test Speed
-          Improve
-        </header>
-        
-        <div>
+        About
+        Test Speed
+        Improve
+      </header>
 
-        
+      <div>
 
-        Game Modes
-        // Check your typing speeds
-        // Train to become a master
+        <section>
+          Learing Touch typing doesn't have to be boring! 🥱 --> 🔥
 
-        // Challenge your friends with an intense typing session! 
+          Discover the magic of sound and keys. CHIK CHOK CHIK CHOK!!!
+
+          No, not just that! Play piano!
+          Or perhaps you like slient? Choose your keyboard!
+        </section>
+
+        Love the intoxicating "CHICK CHOK CHIK CHOK" sound?
+        We have beautiful colorful CHIK CHOCK keybord
 
 
-        // Play a soundtrack game
 
-        // ==Join on discord
+        // Customise keyboards
 
-        // == Footer
-        </div>
+        <section>
+          /Piano
+          - Play one of the best classic musc
+          - Last Christmas I gave you my heart
+          -Jinggle bells
+          -Bethowen
+          - Mozart
+          [video on side]
+        </section>
 
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/1ArVtCQqQRE?si=n3cUtIXX_bnfLwTG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <section>
+          Practice
+          - Get familiar with the basics of touch typing
+          - Lessons from A to Z
+          - The boring stuff, but we made it fun - added some ambient noise
+        </section>
+
+        <section>
+          Challenge(select music, timer, add friends)
+          - Fancy a challenge? Co worker split you a coffee? Challenge them
+          / Enter participants name, give them a TERROR music, set a 60time limit (10second countdown) and see who is the fastest of all
+        </section>
+        /Multiplayer racer
+
+
+
+        <section>
+          / Join Discord
+          // Feeling lonely? I don't think so! Play "Christmas Song"[opens two links] and stream it on discord!
+
+          Because typing is more fun when you're surrounded by festive beats and cheerful company! CHIK CHOK CHIK CHOK CHICk CHOK
+        </section>
+
+
+
+
+
+      </div>
+
+      {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/1ArVtCQqQRE?si=n3cUtIXX_bnfLwTG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
     </main>
   )
 }

@@ -16,29 +16,30 @@ function ReactCanvas({ props }: any) {
     context.fillRect(0, 0, context.canvas.width, context.canvas.height)
 
     new PianoGame(canvas, context)
+    new SnowEffect(canvas, context);
   }, [])
 
 
   return <canvas ref={canvasRef} {...props} width={window.innerWidth} height={window.innerHeight} className="w-auto h-auto"></canvas>
 }
 
-function SnowReactCanvas({ props }: any) {
-  const canvasRef = useRef(null)
+// function SnowReactCanvas({ props }: any) {
+//   const canvasRef = useRef(null)
 
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
-    new SnowEffect(canvas, context);
-  }, [])
+//   useEffect(() => {
+//     const canvas = canvasRef.current
+//     const context = canvas.getContext('2d')
+//     new SnowEffect(canvas, context);
+//   }, [])
 
-  return <canvas ref={canvasRef} {...props} width={window.innerWidth} height={window.innerHeight} className="absolute top-0 right-0 bottom-0 left-0 w-auto h-auto"></canvas>
-}
+//   return <canvas ref={canvasRef} {...props} width={window.innerWidth} height={window.innerHeight} className="absolute top-0 right-0 bottom-0 left-0 w-auto h-auto"></canvas>
+// }
 
 function ViewPianoSingle() {
   return (
     <div className="w-full h-full">
       <div className="z-20 relative">
-        <SnowReactCanvas />
+        {/* <SnowReactCanvas /> */}
       </div>
 
       <div className="flex flex-col">
